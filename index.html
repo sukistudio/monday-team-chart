@@ -216,6 +216,10 @@
   .steps li:last-child::after { display: none; }
   .flow.work { --flow-fg: var(--work); --flow-bg: var(--ripple-bg); }
   .flow.report { --flow-fg: var(--report); --flow-bg: color-mix(in srgb, var(--report) 14%, var(--surface)); }
+  .flow-note {
+    margin: 14px 0 0; padding: 10px 12px; border-radius: 10px;
+    border: 1px dashed var(--human); background: var(--human-bg); font-size: .9rem;
+  }
   .steps b { display: block; }
   .steps span { color: var(--muted); font-size: .9rem; }
 
@@ -259,7 +263,7 @@
     <p class="eyebrow">ทีม 1x · Monday 🌙🐾</p>
     <h1>แผนผังทีม Software ของ Monday</h1>
     <p class="lede">ใครทำอะไร อยู่ session ไหน ใช้ model อะไร งานไหลลงทางไหน และรายงานย้อนขึ้นอย่างไร — จากเปรมลงไปถึง dev กับ QA</p>
-    <span class="date-badge">📅 ข้อมูล ณ 2026-10-11 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
+    <span class="date-badge">📅 ข้อมูล ณ 2026-10-11 <small>· rev 2 อัปเดตกฎ merge · ผังจะเปลี่ยนเมื่อทีมโต</small></span>
   </div>
 </header>
 
@@ -277,7 +281,7 @@
     <div class="org">
       <article class="card node p-human">
         <p class="who"><span class="emo">👤</span>เปรม <span class="tag">human</span></p>
-        <p class="role">เจ้าของงาน · ตัดสินใจสุดท้าย · merge PR</p>
+        <p class="role">เจ้าของงาน · ตัดสินใจสุดท้าย · approve เฉพาะ repo สำคัญ</p>
       </article>
 
       <div class="edge"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
@@ -370,11 +374,12 @@
           <li><b>🌙 Monday</b><span>แปลงเป็น brief ส่งทีม</span></li>
           <li><b>🌊 Tide</b><span>แตก brief ให้ dev / QA</span></li>
           <li><b>🌊 Ripple</b><span>เขียน code ใน worktree ของตัวเอง + deploy</span></li>
-          <li><b>🔀 PR</b><span>branch → main · ไม่ merge เอง</span></li>
+          <li><b>🔀 PR</b><span>branch → main · dev ไม่ merge เอง</span></li>
           <li><b>🏖️ Shore (QA)</b><span>ตรวจตาม checklist · FAIL → แก้บน PR เดิม</span></li>
           <li><b>🌊 Tide review</b><span>review PR + เปิด URL เอง</span></li>
-          <li><b>👤 เปรม merge</b><span>ตัดสินใจสุดท้าย</span></li>
+          <li><b>🌊 Tide merge (QA PASS + review)</b><span>ทีม merge เอง ไม่ต้องรอเปรมกด</span></li>
         </ol>
+        <p class="flow-note">👤 <b>เปรม</b> — approve เฉพาะ repo สำคัญ (production/เงิน/ข้อมูลลูกค้า) · เห็นทุก PR แต่ไม่ต้องกด</p>
       </div>
       <div class="flow report">
         <h3>↑ รายงานย้อนขึ้น</h3>
@@ -382,7 +387,7 @@
           <li><b>🌊 Ripple / 🏖️ Shore</b><span>PROGRESS · STUCK · DONE</span></li>
           <li><b>🌊 Tide</b><span>รวบ แล้วรายงานต่อ</span></li>
           <li><b>🌙 Monday</b><span>สรุปข้ามทีม เสนอเปรม</span></li>
-          <li><b>👤 เปรม</b><span>เคาะ</span></li>
+          <li><b>👤 เปรม</b><span>รับรายงาน (เสร็จ / ต้องตัดสิน / ติด)</span></li>
         </ol>
       </div>
     </div>
@@ -409,6 +414,7 @@
   <section aria-labelledby="h-comms">
     <h2 id="h-comms">กติกาสื่อสาร</h2>
     <p class="channel">ช่องเดียว: <code>maw hey &lt;session&gt; "[suki:ชื่อ] …"</code> — ทุกคนอยู่บนเครื่องเดียวกัน</p>
+    <p class="channel">merge: ทีม merge เองเมื่อ QA PASS + review · เปรม approve เฉพาะ repo สำคัญ (2026-10-11)</p>
     <div class="grid-2">
       <div class="rule"><h3><span class="n">1</span>Push ไม่ poll</h3><p>งานเสร็จ hey หัวหน้าเอง ไม่ปล่อยให้ใครต้องไล่ถาม</p></div>
       <div class="rule"><h3><span class="n">2</span>รายงานหัวหน้าตัวเอง</h3><p>Ripple/Shore → Tide → Monday → เปรม · ไม่ข้ามชั้น ไม่ข้ามทีม</p></div>
@@ -434,7 +440,7 @@
 
 <footer>
   <div class="wrap">
-    <p>📅 ข้อมูล ณ 2026-10-11</p>
+    <p>📅 ข้อมูล ณ 2026-10-11 · rev 2 อัปเดตกฎ merge</p>
     <p>🤖 สร้างโดย Tide/Ripple/Shore จาก [เปรม] → sukistudio/software-team-chart</p>
   </div>
 </footer>
