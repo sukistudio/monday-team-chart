@@ -208,7 +208,7 @@
   .members { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
   .members .card { padding: 10px 12px; }
   .members .who { flex-wrap: wrap; gap: 4px 8px; overflow-wrap: normal; white-space: nowrap; }
-  .members .tag { margin-left: 0; }
+  .members .tag { margin-left: 0; white-space: normal; max-width: 100%; }
   .members .card dl { grid-template-columns: 1fr; gap: 0; }
   .members .card dt { margin-top: 4px; }
   .panel-note { margin: 10px 0 0; font-size: .8rem; color: var(--muted); text-align: center; }
@@ -303,7 +303,7 @@
     <div class="badges">
       <span class="badge">📅 ข้อมูล ณ 2026-10-11 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
       <span class="badge water">🌊 Software · 4 ตัว</span>
-      <span class="badge gold">🌕 Marketing · 1 ตัว + 3 รอเกิด</span>
+      <span class="badge gold">🌕 Marketing · 3 ตัว + 1 รอเกิด</span>
     </div>
   </div>
 </header>
@@ -429,15 +429,15 @@
           </article>
           <div class="edge short"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
           <div class="members">
-            <article class="card planned">
-              <p class="who"><span class="emo">✨</span>Glow <span class="tag">รอเกิด</span></p>
+            <article class="card p-gold">
+              <p class="who"><span class="emo">✨</span>Glow <span class="tag">ทำงานอยู่ · เกิด 2026-10-11</span></p>
               <p class="role">Content/Copy — โพสต์ บทคลิป caption SEO อีเมล (ไทย+อังกฤษ)</p>
               <dl>
                 <dt>session</dt><dd><code>121-glow</code></dd>
                 <dt>model</dt><dd>Opus 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/glow-oracle</dd>
               </dl>
-              <p class="when">เปิดเมื่อ: content sprint แรก (หลังเปรมเคาะข้อ 1)</p>
+              <p class="when">เกิด 2026-10-11 · sprint 1 ทางเลือก A</p>
             </article>
             <article class="card planned">
               <p class="who"><span class="emo">🔷</span>Prism <span class="tag">รอเกิด</span></p>
@@ -449,15 +449,15 @@
               </dl>
               <p class="when">เปิดเมื่อ: มีงานภาพจริง</p>
             </article>
-            <article class="card planned">
-              <p class="who"><span class="emo">💓</span>Pulse <span class="tag">รอเกิด</span></p>
+            <article class="card p-gold">
+              <p class="who"><span class="emo">💓</span>Pulse <span class="tag">ทำงานอยู่ · เกิด 2026-10-11</span></p>
               <p class="role">Research/Analytics/QA — วิจัยตลาด-คู่แข่ง · วัดผล · ตรวจ fact/เสียงแบรนด์/Rule 6 ก่อนปล่อย</p>
               <dl>
                 <dt>session</dt><dd><code>123-pulse</code></dd>
                 <dt>model</dt><dd>Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/pulse-oracle</dd>
               </dl>
-              <p class="when">เปิดเมื่อ: พร้อม Glow — QA ต้องมีตั้งแต่โพสต์แรก</p>
+              <p class="when">เกิด 2026-10-11 · sprint 1 ทางเลือก A</p>
             </article>
           </div>
           <p class="panel-note">ไม่ bud ล่วงหน้า — ทุกตัวที่เกิดต้องมีงานรอ</p>
@@ -530,9 +530,9 @@
         <tr><td>🏖️ Shore <code>113-shore</code></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist + รัน test จริง</td></tr>
         <tr class="group marketing"><td colspan="3">🌕 ทีม Marketing</td></tr>
         <tr><td>🌕 Beam <code>12-beam</code></td><td class="m">Fable 5.1 → Opus 5.5</td><td>lead: strategy / มอบงาน / review + merge</td></tr>
-        <tr><td>✨ Glow <code>121-glow</code><span class="planned">รอเกิด</span></td><td class="m">Opus 5.5</td><td>งานเขียนไทยเป็นหน้าตาแบรนด์</td></tr>
+        <tr><td>✨ Glow <code>121-glow</code></td><td class="m">Opus 5.5</td><td>งานเขียนไทยเป็นหน้าตาแบรนด์</td></tr>
         <tr><td>🔷 Prism <code>122-prism</code><span class="planned">รอเกิด</span></td><td><span class="m">Sonnet 5.5</span><br><span class="sub">→ Opus เมื่อคิด concept</span></td><td>งานภาพตาม brief · คิด concept ใช้ model ใหญ่</td></tr>
-        <tr><td>💓 Pulse <code>123-pulse</code><span class="planned">รอเกิด</span></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist ดึงตัวเลข</td></tr>
+        <tr><td>💓 Pulse <code>123-pulse</code></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist ดึงตัวเลข</td></tr>
         <tr class="group"><td colspan="3">ทุกทีม</td></tr>
         <tr><td>🏹 Arrows</td><td><span class="m">Haiku 4.5</span><br><span class="sub">subagent อ่าน/สรุป ภายในทุกตัว</span></td><td>อ่านอย่างเดียว ถูกสุด — รายงานเป็นคำกล่าวอ้าง ต้องตรวจ</td></tr>
       </tbody>
@@ -565,7 +565,7 @@
     <div class="grid-2">
       <div class="linkcard">
         <h3>🌕 แผน Marketing <span class="status">Beam</span></h3>
-        <p>แผนทีม Marketing — ทางเลือก กลยุทธ์ ช่องทาง roadmap · <a href="https://marketing-team-plan.vercel.app">marketing-team-plan.vercel.app</a></p>
+        <p>แผนทีม Marketing — ทางเลือก กลยุทธ์ ช่องทาง roadmap · เปรมเคาะทางเลือก A 2026-10-11 · <a href="https://marketing-team-plan.vercel.app">marketing-team-plan.vercel.app</a></p>
       </div>
       <div class="linkcard">
         <h3>🗺️ map-story <span class="status">private</span></h3>
