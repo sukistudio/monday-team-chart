@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แผนผังทีม Software</title>
+<meta name="description" content="แผนผังทีม Software ของ Monday (เปรม) — ใคร, session, บทบาท, model, repo, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-11">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌊%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --surface-2: #eef2f7;
+    --text: #172033;
+    --muted: #556076;
+    --line: #c9d2df;
+    --line-strong: #8794a8;
+
+    --human: #6b4e16;   --human-bg: #fbf3e2;
+    --sun: #9a5a00;     --sun-bg: #fff4dc;
+    --moon: #4a3fa8;    --moon-bg: #eeecfb;
+    --tide: #0d6b78;    --tide-bg: #e2f4f6;
+    --ripple: #1d5fb4;  --ripple-bg: #e5effc;
+    --shore: #8a5a2b;   --shore-bg: #f8eee3;
+    --work: #1d5fb4;
+    --report: #0f7a4f;
+
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(20, 30, 50, .06), 0 4px 14px rgba(20, 30, 50, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1220;
+      --surface: #141c2e;
+      --surface-2: #1b2539;
+      --text: #e6ebf5;
+      --muted: #9eabc2;
+      --line: #2e3a52;
+      --line-strong: #5d6b86;
+
+      --human: #f0cf8c;   --human-bg: #2a2416;
+      --sun: #ffc463;     --sun-bg: #2c2412;
+      --moon: #b6adff;    --moon-bg: #221f3d;
+      --tide: #6fd6e2;    --tide-bg: #102c33;
+      --ripple: #8cbcff;  --ripple-bg: #142640;
+      --shore: #e8b98a;   --shore-bg: #2d2219;
+      --work: #8cbcff;
+      --report: #6fdcaa;
+
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1220; --surface: #141c2e; --surface-2: #1b2539; --text: #e6ebf5; --muted: #9eabc2;
+    --line: #2e3a52; --line-strong: #5d6b86;
+    --human: #f0cf8c; --human-bg: #2a2416; --sun: #ffc463; --sun-bg: #2c2412;
+    --moon: #b6adff; --moon-bg: #221f3d; --tide: #6fd6e2; --tide-bg: #102c33;
+    --ripple: #8cbcff; --ripple-bg: #142640; --shore: #e8b98a; --shore-bg: #2d2219;
+    --work: #8cbcff; --report: #6fdcaa;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  code, .mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em; }
+  code { background: var(--surface-2); padding: .05em .4em; border-radius: 6px; }
+  a { color: var(--ripple); }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header.top { padding: 40px 0 8px; }
+  .eyebrow { color: var(--muted); font-size: .9rem; margin: 0 0 4px; }
+  h1 { font-size: clamp(1.6rem, 4.5vw, 2.4rem); line-height: 1.25; margin: 0 0 10px; letter-spacing: -.01em; }
+  .lede { color: var(--muted); margin: 0 0 14px; max-width: 62ch; }
+  .date-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+    padding: 4px 14px; font-weight: 600; font-size: .95rem;
+  }
+  .date-badge small { font-weight: 400; color: var(--muted); }
+
+  section { padding: 28px 0 8px; }
+  h2 { font-size: 1.35rem; margin: 0 0 4px; }
+  .section-note { color: var(--muted); margin: 0 0 18px; font-size: .95rem; }
+
+  /* ---------- Org chart ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; color: var(--muted); margin-bottom: 18px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .k-work { color: var(--work); font-weight: 600; }
+  .legend .k-report { color: var(--report); font-weight: 600; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent, var(--line-strong));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 12px 14px;
+    min-width: 0;
+  }
+  .card .who { display: flex; align-items: center; gap: 8px; margin: 0 0 2px; font-size: 1.1rem; font-weight: 700; }
+  .card .who .emo { font-size: 1.3rem; line-height: 1; }
+  .card .role { margin: 0 0 8px; color: var(--muted); font-size: .92rem; }
+  .card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: .88rem; }
+  .card dt { color: var(--muted); }
+  .card dd { margin: 0; min-width: 0; }
+  .tag {
+    display: inline-block; font-size: .78rem; font-weight: 600;
+    padding: 1px 8px; border-radius: 999px;
+    background: var(--accent-bg, var(--surface-2)); color: var(--accent, var(--muted));
+    margin-left: auto; white-space: nowrap;
+  }
+  .p-human  { --accent: var(--human);  --accent-bg: var(--human-bg); }
+  .p-sun    { --accent: var(--sun);    --accent-bg: var(--sun-bg); }
+  .p-moon   { --accent: var(--moon);   --accent-bg: var(--moon-bg); }
+  .p-tide   { --accent: var(--tide);   --accent-bg: var(--tide-bg); }
+  .p-ripple { --accent: var(--ripple); --accent-bg: var(--ripple-bg); }
+  .p-shore  { --accent: var(--shore);  --accent-bg: var(--shore-bg); }
+
+  .org { display: flex; flex-direction: column; align-items: center; }
+  .org .node { width: 100%; max-width: 340px; }
+
+  /* vertical connector with both directions labelled */
+  .edge {
+    position: relative; height: 54px; width: 100%;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .edge::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 50%;
+    border-left: 2px solid var(--line-strong); transform: translateX(-1px);
+  }
+  .edge .lbl {
+    position: relative; display: inline-flex; gap: 10px;
+    background: var(--bg); padding: 2px 8px; font-size: .8rem; font-weight: 600; white-space: nowrap;
+  }
+  .edge .w { color: var(--work); }
+  .edge .r { color: var(--report); }
+
+  /* top split: เปรม → Monday (focus) + Sunny (peer) */
+  .split {
+    position: relative; width: 100%;
+    display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; align-items: start;
+    padding-top: 22px;
+  }
+  .split::before { /* horizontal bar joining both branches */
+    content: ""; position: absolute; top: 0; left: calc((100% - 20px) / 3); right: calc((100% - 20px) / 6);
+    border-top: 2px solid var(--line-strong);
+  }
+  .branch { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; }
+  .branch::before { content: ""; position: absolute; top: -22px; height: 22px; left: 50%; border-left: 2px solid var(--line-strong); transform: translateX(-1px); }
+
+  .peer-label { font-size: .78rem; color: var(--muted); margin: 0 0 6px; text-align: center; }
+
+  .team-sunny {
+    width: 100%; max-width: 340px; margin-top: 12px;
+    border: 2px dashed var(--line-strong); border-radius: var(--radius);
+    padding: 12px 14px; background: color-mix(in srgb, var(--sun-bg) 55%, transparent);
+  }
+  .team-sunny h3 { margin: 0 0 6px; font-size: 1rem; }
+  .team-sunny ul { margin: 0; padding-left: 18px; font-size: .88rem; }
+  .team-sunny p { margin: 8px 0 0; font-size: .82rem; color: var(--muted); }
+
+  /* Tide → Ripple + Shore */
+  .kids {
+    position: relative; width: 100%;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+    padding-top: 22px;
+  }
+  .kids::before { content: ""; position: absolute; top: 0; left: calc((100% - 12px) / 4); right: calc((100% - 12px) / 4); border-top: 2px solid var(--line-strong); }
+  .kids > .card { position: relative; }
+  .kids > .card::before { content: ""; position: absolute; top: -26px; height: 22px; left: 50%; border-left: 2px solid var(--line-strong); }
+  .kids .card dl { grid-template-columns: 1fr; gap: 0; }
+  .kids .card dt { margin-top: 4px; }
+  .peer-note { grid-column: 1 / -1; text-align: center; font-size: .82rem; color: var(--muted); margin: 0; }
+
+  @media (max-width: 720px) {
+    .split { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-top: 0; }
+    .split::before, .branch::before { display: none; }
+    .branch.sunny { border-top: 1px solid var(--line); padding-top: 22px; }
+  }
+
+  /* ---------- Flow ---------- */
+  .flows { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 20px; }
+  @media (max-width: 720px) { .flows { grid-template-columns: minmax(0, 1fr); } }
+  .flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+  .flow h3 { margin: 0 0 12px; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+  .flow.work h3 { color: var(--work); }
+  .flow.report h3 { color: var(--report); }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .steps li {
+    position: relative; padding: 0 0 16px 40px; counter-increment: s;
+  }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700; font-size: .85rem;
+    background: var(--flow-bg); color: var(--flow-fg); border: 2px solid var(--flow-fg);
+  }
+  .steps li::after {
+    content: ""; position: absolute; left: 13px; top: 30px; bottom: 2px;
+    border-left: 2px solid var(--flow-fg); opacity: .5;
+  }
+  .steps li:last-child { padding-bottom: 0; }
+  .steps li:last-child::after { display: none; }
+  .flow.work { --flow-fg: var(--work); --flow-bg: var(--ripple-bg); }
+  .flow.report { --flow-fg: var(--report); --flow-bg: color-mix(in srgb, var(--report) 14%, var(--surface)); }
+  .steps b { display: block; }
+  .steps span { color: var(--muted); font-size: .9rem; }
+
+  /* ---------- Model table ---------- */
+  table.models { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .models th, .models td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .models th { background: var(--surface-2); font-size: .88rem; color: var(--muted); font-weight: 600; }
+  .models tr:last-child td { border-bottom: 0; }
+  .models td:first-child { font-weight: 600; white-space: nowrap; }
+  .models .m { font-weight: 600; }
+  .models .sub { color: var(--muted); font-size: .85rem; }
+  @media (max-width: 560px) {
+    .models thead { display: none; }
+    .models, .models tbody, .models tr, .models td { display: block; width: 100%; }
+    .models tr { border-bottom: 1px solid var(--line); padding: 10px 0; }
+    .models tr:last-child { border-bottom: 0; }
+    .models td { border: 0; padding: 2px 14px; white-space: normal !important; }
+    .models td:nth-child(3) { color: var(--muted); font-size: .9rem; }
+  }
+
+  /* ---------- Rules + theme ---------- */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  @media (max-width: 560px) { .grid-2 { grid-template-columns: minmax(0, 1fr); } }
+  .rule, .theme { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+  .rule h3, .theme h3 { margin: 0 0 4px; font-size: 1rem; }
+  .rule p, .theme p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .rule .n { color: var(--ripple); font-weight: 700; margin-right: 6px; }
+  .channel { margin: 0 0 14px; padding: 12px 16px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--line); }
+  .channel code { background: var(--surface); }
+  .theme { border-left: 4px solid var(--accent); }
+  .theme .emo { font-size: 1.4rem; }
+
+  footer { margin-top: 36px; padding: 22px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+  footer p { margin: 4px 0; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">ทีม 1x · Monday 🌙🐾</p>
+    <h1>แผนผังทีม Software ของ Monday</h1>
+    <p class="lede">ใครทำอะไร อยู่ session ไหน ใช้ model อะไร งานไหลลงทางไหน และรายงานย้อนขึ้นอย่างไร — จากเปรมลงไปถึง dev กับ QA</p>
+    <span class="date-badge">📅 ข้อมูล ณ 2026-10-11 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== Org chart ===== -->
+  <section aria-labelledby="h-org">
+    <h2 id="h-org">ผังทีม</h2>
+    <p class="section-note">ทีม Software ของ Monday แสดงเต็ม · ทีม Sunny เป็นทีม peer แสดงแบบสรุป</p>
+    <div class="legend" aria-hidden="true">
+      <span class="k-work">↓ งาน</span><span>สั่งงานลงทีละชั้น</span>
+      <span class="k-report">↑ รายงาน</span><span>รายงานย้อนขึ้นทีละชั้น</span>
+    </div>
+
+    <div class="org">
+      <article class="card node p-human">
+        <p class="who"><span class="emo">👤</span>เปรม <span class="tag">human</span></p>
+        <p class="role">เจ้าของงาน · ตัดสินใจสุดท้าย · merge PR</p>
+      </article>
+
+      <div class="edge"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
+
+      <div class="split">
+        <!-- Monday branch (focus) -->
+        <div class="branch monday">
+          <article class="card node p-moon">
+            <p class="who"><span class="emo">🌙</span>Monday <span class="tag">🐾 root</span></p>
+            <p class="role">root oracle ตัวแทนเปรม · หัวหน้าทีม 1x</p>
+            <dl>
+              <dt>session</dt><dd><code>10-monday</code></dd>
+              <dt>model</dt><dd>Fable 5.1</dd>
+              <dt>repo</dt><dd class="mono">sukistudio/monday-oracle</dd>
+            </dl>
+          </article>
+
+          <div class="edge"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
+
+          <article class="card node p-tide">
+            <p class="who"><span class="emo">🌊</span>Tide <span class="tag">lead</span></p>
+            <p class="role">หัวหน้าทีมซอฟต์แวร์ · triage / review PR / ตัดสิน</p>
+            <dl>
+              <dt>session</dt><dd><code>11-tide</code></dd>
+              <dt>model</dt><dd>Fable 5.1 → Opus 5.5</dd>
+              <dt>repo</dt><dd class="mono">sukistudio/tide-oracle</dd>
+            </dl>
+          </article>
+
+          <div class="edge"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
+
+          <div class="kids">
+            <article class="card p-ripple">
+              <p class="who"><span class="emo">🌊</span>Ripple <span class="tag">dev</span></p>
+              <p class="role">เขียน code · deploy · เปิด PR</p>
+              <dl>
+                <dt>session</dt><dd><code>111-ripple</code></dd>
+                <dt>model</dt><dd>Opus 5.5</dd>
+                <dt>repo</dt><dd class="mono">sukistudio/ripple-oracle</dd>
+              </dl>
+            </article>
+            <article class="card p-shore">
+              <p class="who"><span class="emo">🏖️</span>Shore <span class="tag">QA</span></p>
+              <p class="role">ตรวจตาม checklist · รัน test จริง</p>
+              <dl>
+                <dt>session</dt><dd><code>113-shore</code></dd>
+                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>repo</dt><dd class="mono">sukistudio/shore-oracle</dd>
+              </dl>
+            </article>
+            <p class="peer-note">Ripple ↔ Shore คุยตรงได้เฉพาะเรื่อง PR ที่ส่งตรวจ</p>
+          </div>
+        </div>
+
+        <!-- Sunny branch (peer summary) -->
+        <div class="branch sunny">
+          <p class="peer-label">ทีม peer (0x)</p>
+          <article class="card node p-sun">
+            <p class="who"><span class="emo">☀️</span>Sunny <span class="tag">🐾 หลัก</span></p>
+            <p class="role">oracle หลัก · หัวหน้าทีม 0x</p>
+            <dl>
+              <dt>session</dt><dd><code>00-sunny</code></dd>
+              <dt>repo</dt><dd class="mono">sukistudio/sunny</dd>
+            </dl>
+          </article>
+          <div class="team-sunny">
+            <h3>☀️ ทีม Sunny (สรุป)</h3>
+            <ul>
+              <li><code>01-aurora</code></li>
+              <li><code>02-bolt</code></li>
+              <li><code>03</code>–<code>06</code> coders (omx)</li>
+              <li><code>07-pi-hermes</code> + <code>071-it-hermes</code>, <code>072-radar-hermes</code></li>
+            </ul>
+            <p>ข้ามทีม = หัวหน้าคุยกับหัวหน้า (Sunny ↔ Monday)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Flow ===== -->
+  <section aria-labelledby="h-flow">
+    <h2 id="h-flow">การไหลของงาน</h2>
+    <p class="section-note">งานไหลลงจนถึง merge · การรายงานย้อนขึ้นทีละชั้น ไม่ข้ามหัว</p>
+    <div class="flows">
+      <div class="flow work">
+        <h3>↓ งานไหลลง</h3>
+        <ol class="steps">
+          <li><b>👤 เปรม</b><span>ตั้งโจทย์</span></li>
+          <li><b>🌙 Monday</b><span>แปลงเป็น brief ส่งทีม</span></li>
+          <li><b>🌊 Tide</b><span>แตก brief ให้ dev / QA</span></li>
+          <li><b>🌊 Ripple</b><span>เขียน code ใน worktree ของตัวเอง + deploy</span></li>
+          <li><b>🔀 PR</b><span>branch → main · ไม่ merge เอง</span></li>
+          <li><b>🏖️ Shore (QA)</b><span>ตรวจตาม checklist · FAIL → แก้บน PR เดิม</span></li>
+          <li><b>🌊 Tide review</b><span>review PR + เปิด URL เอง</span></li>
+          <li><b>👤 เปรม merge</b><span>ตัดสินใจสุดท้าย</span></li>
+        </ol>
+      </div>
+      <div class="flow report">
+        <h3>↑ รายงานย้อนขึ้น</h3>
+        <ol class="steps">
+          <li><b>🌊 Ripple / 🏖️ Shore</b><span>PROGRESS · STUCK · DONE</span></li>
+          <li><b>🌊 Tide</b><span>รวบ แล้วรายงานต่อ</span></li>
+          <li><b>🌙 Monday</b><span>สรุปข้ามทีม เสนอเปรม</span></li>
+          <li><b>👤 เปรม</b><span>เคาะ</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Models ===== -->
+  <section aria-labelledby="h-model">
+    <h2 id="h-model">ตาราง model</h2>
+    <p class="section-note">เลือก model ตามน้ำหนักของงาน ไม่ใช่ตามตำแหน่ง</p>
+    <table class="models">
+      <thead><tr><th>ใคร</th><th>Model</th><th>ทำไม</th></tr></thead>
+      <tbody>
+        <tr><td>👤 เปรม</td><td class="m">—</td><td>human</td></tr>
+        <tr><td>🌙 Monday <code>10-monday</code></td><td class="m">Fable 5.1</td><td>ตัวแทนเปรม ถือ context ข้ามทีม ตัดสินใจ</td></tr>
+        <tr><td>🌊 Tide <code>11-tide</code></td><td><span class="m">Fable 5.1</span> <span class="sub">ช่วงตั้งทีม</span> → <span class="m">Opus 5.5</span> <span class="sub">เมื่อ pipeline นิ่ง</span></td><td>lead: triage / review PR / ตัดสิน</td></tr>
+        <tr><td>🌊 Ripple <code>111-ripple</code></td><td><span class="m">Opus 5.5</span><br><span class="sub">เปรมเคาะ 2026-10-11 · เดิมวางไว้ Sonnet 5.5</span></td><td>dev เขียน code เปิด PR — คิดลึกพอสำหรับงานที่ไม่มี spec ละเอียด</td></tr>
+        <tr><td>🏖️ Shore <code>113-shore</code></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist + รัน test จริง</td></tr>
+        <tr><td>🏹 Arrows</td><td><span class="m">Haiku 4.5</span><br><span class="sub">subagent อ่าน/สรุป ภายในทุกคน</span></td><td>อ่านอย่างเดียว ถูกสุด — รายงานเป็นคำกล่าวอ้าง ต้องตรวจ</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Comms ===== -->
+  <section aria-labelledby="h-comms">
+    <h2 id="h-comms">กติกาสื่อสาร</h2>
+    <p class="channel">ช่องเดียว: <code>maw hey &lt;session&gt; "[suki:ชื่อ] …"</code> — ทุกคนอยู่บนเครื่องเดียวกัน</p>
+    <div class="grid-2">
+      <div class="rule"><h3><span class="n">1</span>Push ไม่ poll</h3><p>งานเสร็จ hey หัวหน้าเอง ไม่ปล่อยให้ใครต้องไล่ถาม</p></div>
+      <div class="rule"><h3><span class="n">2</span>รายงานหัวหน้าตัวเอง</h3><p>Ripple/Shore → Tide → Monday → เปรม · ไม่ข้ามชั้น ไม่ข้ามทีม</p></div>
+      <div class="rule"><h3><span class="n">3</span>ไฟล์แล้ว hey path</h3><p>ข้อความยาวเขียนลงไฟล์ใน repo แล้ว hey บรรทัดเดียวชี้ path</p></div>
+      <div class="rule"><h3><span class="n">4</span>peek ก่อน hey</h3><p>ปลายทางอาจ busy — <code>maw peek</code> ดูก่อน ข้อความจะได้ไม่ค้าง</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Theme ===== -->
+  <section aria-labelledby="h-theme">
+    <h2 id="h-theme">Theme ของทีม</h2>
+    <p class="section-note">ชื่อทุกตัวต่อกันเป็นเรื่องเดียว — จากฟ้าลงทะเลถึงฝั่ง</p>
+    <div class="grid-5">
+      <div class="theme p-sun"><h3><span class="emo">☀️</span> Sunny</h3><p>Sun-day — วันอาทิตย์ ทีมแรก</p></div>
+      <div class="theme p-moon"><h3><span class="emo">🌙</span> Monday</h3><p>Moon-day — วันจันทร์ ทีมถัดมา</p></div>
+      <div class="theme p-tide"><h3><span class="emo">🌊</span> Tide</h3><p>น้ำขึ้นลงตามแรงดึงของจันทร์</p></div>
+      <div class="theme p-ripple"><h3><span class="emo">🌊</span> Ripple</h3><p>ระลอก — แรงเล็ก ๆ ที่ลงมือแล้วส่งต่อไปไกล</p></div>
+      <div class="theme p-shore"><h3><span class="emo">🏖️</span> Shore</h3><p>ฝั่ง — ที่คลื่นทุกลูกต้องมาถึงและถูกตรวจ</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>📅 ข้อมูล ณ 2026-10-11</p>
+    <p>🤖 สร้างโดย Tide/Ripple/Shore จาก [เปรม] → sukistudio/software-team-chart</p>
+  </div>
+</footer>
+</body>
+</html>
