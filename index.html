@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monday Team</title>
-<meta name="description" content="Monday Team 🌙🐾 — ทีมของเปรม: ทีม Software (Tide) และทีม Marketing (Beam) · ใคร, session, บทบาท, model, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-11">
+<meta name="description" content="Monday Team 🌙🐾 — ทีมของเปรม 3 ทีม: Software (Tide) · Marketing (Beam) · Finance (Harbor) · ใคร, session, บทบาท, model, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-12 (monday-oracle f2b0d7d)">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌙%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +27,7 @@
     --water: #0d6b78;   --water-bg: #e2f4f6;   --water-panel: #eaf5f6;
     --shore: #8a5a2b;   --shore-bg: #f8eee3;
     --gold: #8a6510;    --gold-bg: #fbf0d2;    --gold-panel: #f8f0dc;
+    --harbor: #1d6b52;  --harbor-bg: #def1e7;  --harbor-panel: #e8f3ec;
     --silver: #4f5b70;  --silver-bg: #e9edf3;
     --work: #1d5fb4;
     --report: #0f7a4f;
@@ -44,6 +45,7 @@
       --water: #6fd6e2; --water-bg: #102c33; --water-panel: #0f1f2e;
       --shore: #e8b98a; --shore-bg: #2d2219;
       --gold: #f2cf73; --gold-bg: #2d2714; --gold-panel: #1c1a1d;
+      --harbor: #86d9b4; --harbor-bg: #10291f; --harbor-panel: #0e1f1c;
       --silver: #c9d2e3; --silver-bg: #222b42;
       --work: #8cbcff; --report: #6fdcaa; --link: #f2cf73;
       --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
@@ -57,6 +59,7 @@
     --water: #6fd6e2; --water-bg: #102c33; --water-panel: #0f1f2e;
     --shore: #e8b98a; --shore-bg: #2d2219;
     --gold: #f2cf73; --gold-bg: #2d2714; --gold-panel: #1c1a1d;
+    --harbor: #86d9b4; --harbor-bg: #10291f; --harbor-panel: #0e1f1c;
     --silver: #c9d2e3; --silver-bg: #222b42;
     --work: #8cbcff; --report: #6fdcaa; --link: #f2cf73;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
@@ -91,6 +94,7 @@
   .badge small { font-weight: 400; color: var(--muted); }
   .badge.water { color: var(--water); }
   .badge.gold { color: var(--gold); }
+  .badge.harbor { color: var(--harbor); }
 
   section { padding: 28px 0 8px; }
   h2 { font-size: 1.35rem; margin: 0 0 4px; }
@@ -138,6 +142,7 @@
   .p-water  { --accent: var(--water);  --accent-bg: var(--water-bg); }
   .p-shore  { --accent: var(--shore);  --accent-bg: var(--shore-bg); }
   .p-gold   { --accent: var(--gold);   --accent-bg: var(--gold-bg); }
+  .p-harbor { --accent: var(--harbor); --accent-bg: var(--harbor-bg); }
 
   /* ---------- org chart ---------- */
   .org { display: flex; flex-direction: column; align-items: center; }
@@ -183,13 +188,13 @@
   .team-sunny ul { margin: 0; padding-left: 18px; font-size: .88rem; }
   .team-sunny p { margin: 8px 0 0; font-size: .82rem; color: var(--muted); }
 
-  /* Monday → 2 ทีม */
+  /* Monday → 3 ทีม */
   .teams {
     position: relative; width: 100%;
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
     padding-top: 26px;
   }
-  .teams::before { content: ""; position: absolute; top: 0; left: calc((100% - 20px) / 4); right: calc((100% - 20px) / 4); border-top: 2px solid var(--line-strong); }
+  .teams::before { content: ""; position: absolute; top: 0; left: calc((100% - 40px) / 6); right: calc((100% - 40px) / 6); border-top: 2px solid var(--line-strong); }
   .panel {
     position: relative; min-width: 0;
     border-radius: calc(var(--radius) + 6px);
@@ -201,9 +206,15 @@
   .panel::before { content: ""; position: absolute; top: -27px; height: 26px; left: 50%; border-left: 2px solid var(--line-strong); transform: translateX(-1px); }
   .panel.software { --panel-bg: var(--water-panel); border-top: 4px solid var(--water); }
   .panel.marketing { --panel-bg: var(--gold-panel); border-top: 4px solid var(--gold); }
+  .panel.finance { --panel-bg: var(--harbor-panel); border-top: 4px solid var(--harbor); }
   .panel h3 { margin: 0; font-size: 1.15rem; text-align: center; }
   .panel.software h3 { color: var(--water); }
   .panel.marketing h3 { color: var(--gold); }
+  .panel.finance h3 { color: var(--harbor); }
+  .panel-rules { width: 100%; margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: .84rem; }
+  .panel-rules li { padding: 4px 10px; border-radius: 10px; background: var(--harbor-bg); color: var(--harbor); font-weight: 600; }
+  .phases { width: 100%; margin: 10px 0 0; padding-left: 0; list-style: none; font-size: .84rem; color: var(--muted); }
+  .phases li { margin: 2px 0; }
   .panel .sub { margin: 0 0 12px; color: var(--muted); font-size: .88rem; text-align: center; }
   .members { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
   .members .card { padding: 10px 12px; }
@@ -246,6 +257,7 @@
   .steps li.approve::before { content: "✓"; background: var(--human-bg); color: var(--human); border-color: var(--human); }
   .flow.software { --flow-fg: var(--water); --flow-bg: var(--water-bg); }
   .flow.marketing { --flow-fg: var(--gold); --flow-bg: var(--gold-bg); }
+  .flow.finance { --flow-fg: var(--harbor); --flow-bg: var(--harbor-bg); }
   .flow.cross { --flow-fg: var(--moon); --flow-bg: var(--moon-bg); }
   .flow.report { --flow-fg: var(--report); --flow-bg: color-mix(in srgb, var(--report) 14%, var(--surface)); }
   .flow-note { margin: 12px 0 0; padding: 8px 12px; border-radius: 10px; background: var(--surface-2); font-size: .86rem; color: var(--muted); }
@@ -261,6 +273,7 @@
   .models tr.group td { background: var(--surface-2); font-size: .85rem; font-weight: 700; padding: 6px 14px; }
   .models tr.group.software td { color: var(--water); }
   .models tr.group.marketing td { color: var(--gold); }
+  .models tr.group.finance td { color: var(--harbor); }
   .models .planned { color: var(--muted); font-weight: 600; font-size: .78rem; border: 1px dashed var(--line-strong); border-radius: 999px; padding: 0 6px; margin-left: 4px; }
   @media (max-width: 560px) {
     .models thead { display: none; }
@@ -299,11 +312,13 @@
   <div class="wrap">
     <p class="eyebrow">ทีม 1x · ทีมของเปรม</p>
     <h1>Monday Team 🌙🐾 — ทีมของเปรม</h1>
-    <p class="lede">Monday เป็นตัวแทนเปรม ดูแลสองทีม: <b>ทีม Software</b> 🌊 (สร้างของ — วิดีโอ เว็บ เครื่องมือ) และ <b>ทีม Marketing</b> 🌕 (บอกโลกว่าเราทำอะไร) · ใครทำอะไร ใช้ model อะไร งานไหลทางไหน และรายงานย้อนขึ้นอย่างไร</p>
+    <p class="lede">Monday เป็นตัวแทนเปรม ดูแลสามทีม: <b>ทีม Software</b> 🌊 (สร้างของ — วิดีโอ เว็บ เครื่องมือ) · <b>ทีม Marketing</b> 🌕 (บอกโลกว่าเราทำอะไร) · <b>ทีม Finance</b> ⚓ (ให้เปรมเห็นเงินของตัวเองชัด — ไม่แตะเงินจริง) · ใครทำอะไร ใช้ model อะไร งานไหลทางไหน และรายงานย้อนขึ้นอย่างไร</p>
     <div class="badges">
-      <span class="badge">📅 ข้อมูล ณ 2026-10-11 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
+      <span class="badge">📅 ข้อมูล ณ 2026-10-12 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
+      <span class="badge">🌙 3 ทีม</span>
       <span class="badge water">🌊 Software · 4 ตัว</span>
       <span class="badge gold">🌕 Marketing · 3 ตัว + 1 รอเกิด</span>
+      <span class="badge harbor">⚓ Finance · 3 ตัว + 1 รอเกิด</span>
     </div>
   </div>
 </header>
@@ -313,7 +328,7 @@
   <!-- ===== Org chart ===== -->
   <section aria-labelledby="h-org">
     <h2 id="h-org">ผังทีม</h2>
-    <p class="section-note">Monday อยู่กลาง ดูแลสองทีม · ทีม Sunny เป็นทีม peer แสดงแบบสรุป</p>
+    <p class="section-note">Monday อยู่กลาง ดูแลสามทีม · ทีม Sunny เป็นทีม peer แสดงแบบสรุป · เลข session: <code>1x</code> ทีม Monday → <code>11-</code> Software · <code>12-</code> Marketing · <code>13-</code> Finance</p>
     <div class="legend" aria-hidden="true">
       <span class="k-work">↓ งาน</span><span>สั่งงานลงทีละชั้น</span>
       <span class="k-report">↑ รายงาน</span><span>รายงานย้อนขึ้นทีละชั้น</span>
@@ -332,7 +347,7 @@
         <div class="branch monday">
           <article class="card node p-moon">
             <p class="who"><span class="emo">🌙</span>Monday <span class="tag">🐾 root</span></p>
-            <p class="role">root oracle ตัวแทนเปรม · ส่ง brief ให้ทั้งสองทีม · รายงานเปรม</p>
+            <p class="role">root oracle ตัวแทนเปรม · ส่ง brief ให้ทั้งสามทีม · รายงานเปรม</p>
             <dl>
               <dt>session</dt><dd><code>10-monday</code></dd>
               <dt>model</dt><dd>Fable 5.1</dd>
@@ -371,7 +386,7 @@
         <!-- Software -->
         <div class="panel software">
           <h3>🌊 ทีม Software</h3>
-          <p class="sub">สร้างของ — map-story, เว็บ · โทนน้ำ</p>
+          <p class="sub">สร้างของ — วิดีโอแผนที่, เว็บ · โทนน้ำ</p>
           <article class="card node p-water">
             <p class="who"><span class="emo">🌊</span>Tide <span class="tag">lead</span></p>
             <p class="role">หัวหน้าทีม Software · triage / review PR / merge</p>
@@ -441,7 +456,7 @@
             </article>
             <article class="card planned">
               <p class="who"><span class="emo">🔷</span>Prism <span class="tag">รอเกิด</span></p>
-              <p class="role">Creative/Visual — thumbnail social card storyboard · brief วิดีโอให้ map-story</p>
+              <p class="role">Creative/Visual — thumbnail social card storyboard · brief วิดีโอให้ทีม Software</p>
               <dl>
                 <dt>session</dt><dd><code>122-prism</code></dd>
                 <dt>model</dt><dd>Sonnet 5.5 → Opus เมื่อคิด concept</dd>
@@ -461,6 +476,61 @@
             </article>
           </div>
           <p class="panel-note">ไม่ bud ล่วงหน้า — ทุกตัวที่เกิดต้องมีงานรอ</p>
+        </div>
+
+        <!-- Finance -->
+        <div class="panel finance">
+          <h3>⚓ ทีม Finance</h3>
+          <p class="sub">การเงิน · การลงทุน · ทรัพย์สิน · บัญชีส่วนตัว (+ธุรกิจภายหลัง) · โทนท่าเรือ</p>
+          <article class="card node p-harbor">
+            <p class="who"><span class="emo">⚓</span>Harbor <span class="tag">lead</span></p>
+            <p class="role">หัวหน้าทีม Finance · ผังบัญชี/รายงาน · review ตัวเลข · รายงาน Monday · เกิด 2026-10-12</p>
+            <dl>
+              <dt>session</dt><dd><code>13-harbor</code></dd>
+              <dt>model</dt><dd>Fable 5.1</dd>
+              <dt>repo</dt><dd class="mono">sukistudio/harbor-oracle</dd>
+            </dl>
+          </article>
+          <div class="edge short"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
+          <div class="members">
+            <article class="card p-harbor">
+              <p class="who"><span class="emo">📒</span>Ledger <span class="tag">ทำงานอยู่ · เกิด 2026-10-12</span></p>
+              <p class="role">บัญชี — import statement → จัดหมวด → งบรายเดือน</p>
+              <dl>
+                <dt>session</dt><dd><code>131-ledger</code></dd>
+                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>repo</dt><dd class="mono">sukistudio/ledger-oracle</dd>
+              </dl>
+            </article>
+            <article class="card planned">
+              <p class="who"><span class="emo">🧭</span>Compass <span class="tag">รอเกิด</span></p>
+              <p class="role">ลงทุน/ทรัพย์สิน — พอร์ต · ผลตอบแทนจริง · เทียบตัวเลือก</p>
+              <dl>
+                <dt>session</dt><dd><code>132-compass</code></dd>
+                <dt>model</dt><dd>Opus 5.5</dd>
+              </dl>
+              <p class="when">เปิดเมื่อ: ทบทวนพอร์ต</p>
+            </article>
+            <article class="card p-harbor">
+              <p class="who"><span class="emo">🏮</span>Lantern <span class="tag">ทำงานอยู่ · เกิด 2026-10-12</span></p>
+              <p class="role">QA/ความเสี่ยง — reconcile ทุกตัวเลข · ตรวจ PII ก่อน commit · ปฏิทินครบกำหนด</p>
+              <dl>
+                <dt>session</dt><dd><code>133-lantern</code></dd>
+                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>repo</dt><dd class="mono">sukistudio/lantern-oracle</dd>
+              </dl>
+            </article>
+          </div>
+          <ul class="panel-rules" aria-label="กฎเด่นของทีม Finance">
+            <li>🔒 read-only ต่อเงินจริง — ไม่กดโอน/ซื้อขาย/ไม่ถือรหัส</li>
+            <li>💻 ไฟล์ดิบอยู่ในเครื่องเท่านั้น</li>
+            <li>🔐 เว็บของทีมล็อกอินตลอดไป</li>
+          </ul>
+          <ol class="phases" aria-label="Phase ของทีม Finance">
+            <li>① ตั้งบ้าน + สินทรัพย์สุทธิ</li>
+            <li>② รายงานรายเดือน + ปฏิทินเตือน</li>
+            <li>③ ทบทวนพอร์ต/วางแผน</li>
+          </ol>
         </div>
       </div>
     </div>
@@ -493,6 +563,17 @@
           <li class="approve"><b>👤 เปรม approve ก่อนโพสต์</b><span>ทุกโพสต์สาธารณะ</span></li>
         </ol>
       </div>
+      <div class="flow finance">
+        <h3>⚓ สาย Finance</h3>
+        <ol class="steps">
+          <li><b>🌙 Monday → ⚓ Harbor</b><span>brief</span></li>
+          <li><b>📒 Ledger</b><span>import ไฟล์ที่เปรม export เอง → จัดหมวด → งบรายเดือน</span></li>
+          <li><b>🏮 Lantern QA</b><span>reconcile ทุกตัวเลขกับต้นทาง · ตรวจ PII ก่อน commit</span></li>
+          <li><b>⚓ Harbor merge</b><span>เมื่อ Lantern PASS + review</span></li>
+          <li class="approve"><b>👤 เปรม merge เอง</b><span>เฉพาะ PR แก้กฎผังบัญชี/จัดหมวด (เปลี่ยนความหมายของตัวเลข)</span></li>
+        </ol>
+        <p class="flow-note">ทีมไม่แตะเงินจริง — เปรมเป็นคนกดทุกอย่างเอง · ข้อเสนอลงทุนเป็นตัวเลือกพร้อมข้อมูล</p>
+      </div>
       <div class="flow cross">
         <h3>🔁 ข้ามทีม</h3>
         <ol class="steps">
@@ -506,7 +587,7 @@
         <h3>↑ รายงานย้อนขึ้น</h3>
         <ol class="steps">
           <li><b>ลูกทีม</b><span>PROGRESS · STUCK · DONE → หัวหน้าทีมตัวเองเท่านั้น</span></li>
-          <li><b>🌊 Tide / 🌕 Beam</b><span>รวบ แล้วรายงาน Monday</span></li>
+          <li><b>🌊 Tide / 🌕 Beam / ⚓ Harbor</b><span>รวบ แล้วรายงาน Monday</span></li>
           <li><b>🌙 Monday</b><span>สรุปข้ามทีม เสนอเปรม</span></li>
           <li><b>👤 เปรม</b><span>รับรายงาน (เสร็จ / ต้องตัดสิน / ติด)</span></li>
         </ol>
@@ -533,6 +614,11 @@
         <tr><td>✨ Glow <code>121-glow</code></td><td class="m">Opus 5.5</td><td>งานเขียนไทยเป็นหน้าตาแบรนด์</td></tr>
         <tr><td>🔷 Prism <code>122-prism</code><span class="planned">รอเกิด</span></td><td><span class="m">Sonnet 5.5</span><br><span class="sub">→ Opus เมื่อคิด concept</span></td><td>งานภาพตาม brief · คิด concept ใช้ model ใหญ่</td></tr>
         <tr><td>💓 Pulse <code>123-pulse</code></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist ดึงตัวเลข</td></tr>
+        <tr class="group finance"><td colspan="3">⚓ ทีม Finance</td></tr>
+        <tr><td>⚓ Harbor <code>13-harbor</code></td><td><span class="m">Fable 5.1</span><br><span class="sub">→ Opus 5.5 หลังตั้งทีม</span></td><td>lead: ออกแบบผังบัญชี/รายงาน · review ตัวเลข · อ่านเจตนาเปรม</td></tr>
+        <tr><td>📒 Ledger <code>131-ledger</code></td><td class="m">Sonnet 5.5</td><td>งานโครงสร้างซ้ำตามกฎ — ต้องแม่น</td></tr>
+        <tr><td>🧭 Compass <code>132-compass</code><span class="planned">รอเกิด</span></td><td class="m">Opus 5.5</td><td>วิเคราะห์ลงทุน ให้เหตุผลหลายชั้น</td></tr>
+        <tr><td>🏮 Lantern <code>133-lantern</code></td><td class="m">Sonnet 5.5</td><td>checklist + reconcile ตัวเลข — เข้มแต่ไม่ต้องสร้างสรรค์</td></tr>
         <tr class="group"><td colspan="3">ทุกทีม</td></tr>
         <tr><td>🏹 Arrows</td><td><span class="m">Haiku 4.5</span><br><span class="sub">subagent อ่าน/สรุป ภายในทุกตัว</span></td><td>อ่านอย่างเดียว ถูกสุด — รายงานเป็นคำกล่าวอ้าง ต้องตรวจ</td></tr>
       </tbody>
@@ -545,15 +631,16 @@
     <div class="merge">
       <h3>🔀 merge (เปรมเคาะ 2026-10-11)</h3>
       <ul>
-        <li><b>Tide / Beam merge เอง</b> เมื่อ QA PASS + review — ยังต้องผ่าน PR ห้าม push main</li>
-        <li><b>เปรม approve</b> เฉพาะ repo สำคัญ (production / เงิน / ข้อมูลลูกค้า / auth — ยังไม่มีรายชื่อ) และ<b>ทุกโพสต์สาธารณะ</b></li>
+        <li><b>Tide / Beam / Harbor merge เอง</b> เมื่อ QA PASS + review (Finance: Lantern PASS) — ยังต้องผ่าน PR ห้าม push main</li>
+        <li><b>เปรม approve</b> เฉพาะ repo สำคัญ (production / เงิน / ข้อมูลลูกค้า / auth) และ<b>ทุกโพสต์สาธารณะ</b></li>
+        <li><b>repo ข้อมูลการเงิน = repo สำคัญตัวแรก</b> (2026-10-12): เปรม merge เองเฉพาะ PR แก้กฎผังบัญชี/จัดหมวด · รายงานประจำเดือน Harbor merge ได้</li>
         <li>เปรมเห็นทุก PR แต่ไม่ต้องกด</li>
       </ul>
     </div>
     <p class="channel">ช่องเดียว: <code>maw hey &lt;session&gt; "[suki:ชื่อ] …"</code> — ทุกตัวอยู่บนเครื่องเดียวกัน</p>
     <div class="grid-2">
       <div class="rule"><h3><span class="n">1</span>Push ไม่ poll</h3><p>งานเสร็จ hey หัวหน้าเอง ไม่ปล่อยให้ใครต้องไล่ถาม</p></div>
-      <div class="rule"><h3><span class="n">2</span>รายงานหัวหน้าตัวเอง</h3><p>ลูกทีม → Tide/Beam → Monday → เปรม · ข้ามทีมผ่าน Monday</p></div>
+      <div class="rule"><h3><span class="n">2</span>รายงานหัวหน้าตัวเอง</h3><p>ลูกทีม → Tide/Beam/Harbor → Monday → เปรม · ข้ามทีมผ่าน Monday</p></div>
       <div class="rule"><h3><span class="n">3</span>ไฟล์แล้ว hey path</h3><p>ข้อความยาวเขียนลงไฟล์ใน repo แล้ว hey บรรทัดเดียวชี้ path</p></div>
       <div class="rule"><h3><span class="n">4</span>peek ก่อน hey</h3><p>ปลายทางอาจ busy — <code>maw peek</code> ดูก่อน ข้อความจะได้ไม่ค้าง</p></div>
     </div>
@@ -565,11 +652,11 @@
     <div class="grid-2">
       <div class="linkcard">
         <h3>🌕 แผน Marketing <span class="status">Beam</span></h3>
-        <p>แผนทีม Marketing — ทางเลือก กลยุทธ์ ช่องทาง roadmap · เปรมเคาะทางเลือก A 2026-10-11 · <a href="https://marketing-team-plan.vercel.app">marketing-team-plan.vercel.app</a></p>
+        <p>แผนทีม Marketing — ทางเลือก กลยุทธ์ ช่องทาง roadmap · เปรมเคาะทางเลือก A 2026-10-11 · <a href="https://monday-marketing-plan.vercel.app">monday-marketing-plan.vercel.app</a></p>
       </div>
       <div class="linkcard">
-        <h3>🗺️ map-story <span class="status">private</span></h3>
-        <p>เครื่องมือทำวิดีโอเล่าเรื่องด้วยแผนที่ (Bun + Remotion + open data) · POC ผ่าน · Phase 2 (5 style + skill) กำลังทำ</p>
+        <h3>🗺️ เครื่องมือวิดีโอแผนที่ <span class="status">private</span></h3>
+        <p>เครื่องมือทำวิดีโอเล่าเรื่องด้วยแผนที่ (Bun + Remotion + open data) · POC + Phase 2 (6 style + skill) เสร็จ · Phase 3 เสียงพากย์ไทยกำลังทำ</p>
       </div>
     </div>
   </section>
@@ -577,13 +664,14 @@
   <!-- ===== Theme ===== -->
   <section aria-labelledby="h-theme">
     <h2 id="h-theme">Theme ของทีม</h2>
-    <p class="section-note">วันอาทิตย์ → วันจันทร์ · จันทร์ดึงน้ำ (Software) และส่องแสง (Marketing)</p>
+    <p class="section-note">วันอาทิตย์ → วันจันทร์ · จันทร์ดึงน้ำ (Software) ส่องแสง (Marketing) และน้ำขึ้นลงทำให้เรือต้องมีที่จอด (Finance)</p>
     <div class="grid-themes">
       <div class="theme p-sun"><h3><span class="emo">☀️</span> Sunny</h3><p>Sun-day — วันอาทิตย์ ทีมแรก</p></div>
       <div class="theme p-moon"><h3><span class="emo">🌙</span> Monday</h3><p>Moon-day — วันจันทร์ ดูแลทั้งน้ำและแสง</p></div>
       <div class="theme p-water"><h3><span class="emo">🌊</span> Tide · Ripple · Swell</h3><p>น้ำขึ้นลงตามจันทร์ · ระลอกที่ลงมือ · คลื่นยาวที่พาไปไกล</p></div>
       <div class="theme p-shore"><h3><span class="emo">🏖️</span> Shore</h3><p>ฝั่ง — ที่คลื่นทุกลูกต้องมาถึงและถูกตรวจ</p></div>
       <div class="theme p-gold"><h3><span class="emo">🌕</span> Beam · Glow · Prism · Pulse</h3><p>ลำแสงจันทร์ · แสงเรือง · ปริซึมแยกสี · ชีพจรที่วัดผล</p></div>
+      <div class="theme p-harbor"><h3><span class="emo">⚓</span> Harbor · Ledger · Compass · Lantern</h3><p>ท่าเรือที่เก็บของปลอดภัย · สมุดบัญชี · เข็มทิศชี้ทางลงทุน · ตะเกียงส่องความเสี่ยงก่อนชน</p></div>
     </div>
   </section>
 
@@ -591,8 +679,8 @@
 
 <footer>
   <div class="wrap">
-    <p>📅 ข้อมูล ณ 2026-10-11 · เดิมคือ software-team-chart (ทีม Software อย่างเดียว)</p>
-    <p>🤖 สร้างโดย Tide/Ripple/Shore จาก [เปรม] → sukistudio/monday-team-chart</p>
+    <p>📅 ข้อมูล ณ 2026-10-12 (monday-oracle <span class="mono">f2b0d7d</span>) · เดิมคือ software-team-chart (ทีม Software อย่างเดียว)</p>
+    <p>🤖 สร้างโดย Tide/Ripple/Swell/Shore จาก [เปรม] → sukistudio/monday-team-chart</p>
   </div>
 </footer>
 </body>
