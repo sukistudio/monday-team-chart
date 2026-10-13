@@ -1,6 +1,6 @@
 # monday-team-chart
 
-**Monday Team 🌙🐾 — ทีมของเปรม** · ผัง 3 ทีม: Software (Tide 🌊) · Marketing (Beam 🌕) · Finance (Harbor ⚓) · ข้อมูล ณ 2026-10-12 — monday-oracle `f2b0d7d` (Task Brief #8 + แผนทีม Finance + CLAUDE.md "My Team")
+**Monday Team 🌙🐾 — ทีมของเปรม** · ผัง 4 ทีม: Software (Tide 🌊) · Marketing (Beam 🌕) · Finance (Harbor ⚓) · Research (Horizon 🌅) · ข้อมูล ณ 2026-10-14 — monday-oracle `1f07490` (Task Brief #8 / #8c + แผนทีม Finance / Research + CLAUDE.md "My Team") · roster ตรงกับ `public/team.json` ของ office (ทีม · lead · สี)
 
 - เว็บ: https://monday-team-chart.vercel.app
 - URL เก่า https://software-team-chart.vercel.app → หน้า redirect มาที่นี่ (repo นี้เดิมชื่อ `software-team-chart`)
@@ -33,6 +33,9 @@ vercel --prod --yes
 `docs/screenshots/shot-{light,dark}-{375,1280}.png`
 
 - หน้า public: ห้ามชื่อ repo private (ใช้ "repo ข้อมูลการเงิน" / "เครื่องมือวิดีโอแผนที่") · `*-oracle` โชว์ได้ · ไม่มีตัวเลขเงิน/ชื่อบัญชี/ธนาคาร
-- สถานะลูกทีม Finance ตรวจจาก `~/.maw/fleet/<NNN-name>.json` ตอนแก้ข้อมูล (มี = เกิดแล้ว)
+- หน้า public: ห้ามชื่อ repo ข้อมูลวิจัย (private) — เขียน "repo ข้อมูลวิจัย"
+- สถานะลูกทีม Finance / Research ตรวจจาก `~/.maw/fleet/<NNN-name>.json` ตอนแก้ข้อมูล (มี = เกิดแล้ว · `142-chart` ยังไม่มี = รอเกิด)
+- สีทีม: Software ฟ้า · Marketing ทอง · Finance เขียว · **Research fuchsia `#E879F9`** (พื้น `#4A044E` · โหมดสว่าง `#A21CAF`) — ค่าเดียวกับ office · ไม่ใช้ส้ม `#FB923C` เพราะชนสี "รอเปรม" ใน office
+- layout ผังทีม: ≥ 1200px 4 คอลัมน์ (กว้างกว่าเนื้อหา) · 761–1199px 2×2 · ≤ 760px คอลัมน์เดียว
 
 🤖 สร้างโดย Tide/Ripple/Swell/Shore จาก [เปรม] → sukistudio/monday-team-chart
