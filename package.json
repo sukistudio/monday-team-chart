@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "check": "bun test && bun run scripts/check-members.ts",
+    "check-members": "bun run scripts/check-members.ts",
+    "test": "bun test"
+  }
+}
