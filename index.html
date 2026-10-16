@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monday Team</title>
-<meta name="description" content="Monday Team 🌙🐾 — ทีมของเปรม 4 ทีม: Software (Tide) · Marketing (Beam) · Finance (Harbor) · Research (Horizon) · ใคร, session, บทบาท, model, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-14 (monday-oracle 1f07490)">
+<meta name="description" content="Monday Team 🌙🐾 — ทีมของเปรม 4 ทีม: Software (Tide) · Marketing (Beam) · Finance (Harbor) · Research (Horizon) · ใคร, session, บทบาท, engine, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-17">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌙%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,7 +120,7 @@
     padding: 12px 14px;
     min-width: 0;
   }
-  .card .who { display: flex; align-items: center; gap: 8px; margin: 0 0 2px; font-size: 1.1rem; font-weight: 700; }
+  .card .who { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 2px; font-size: 1.1rem; font-weight: 700; }
   .card .who .emo { font-size: 1.25rem; line-height: 1; }
   .card .role { margin: 0 0 8px; color: var(--muted); font-size: .9rem; }
   .card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: .86rem; }
@@ -132,6 +132,8 @@
     background: var(--accent-bg, var(--surface-2)); color: var(--accent, var(--muted));
     margin-left: auto; white-space: nowrap;
   }
+  .eng { display: inline-block; font-size: .7rem; font-weight: 500; padding: 1px 6px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-2); white-space: nowrap; }
+  .eng-codex { border-style: dashed; }
   .card.planned {
     border: 2px dashed var(--line-strong);
     background: transparent;
@@ -217,17 +219,17 @@
   }
   .panel::before { content: ""; position: absolute; top: -27px; height: 26px; left: 50%; border-left: 2px solid var(--line-strong); transform: translateX(-1px); }
   .panel.software { --panel-bg: var(--water-panel); border-top: 4px solid var(--water); }
-  .panel.marketing { --panel-bg: var(--gold-panel); border-top: 4px solid var(--gold); }
-  .panel.finance { --panel-bg: var(--harbor-panel); border-top: 4px solid var(--harbor); }
-  .panel.research { --panel-bg: var(--dawn-panel); border-top: 4px solid var(--dawn); }
+  .panel.team-marketing { --panel-bg: var(--gold-panel); border-top: 4px solid var(--gold); }
+  .panel.team-finance { --panel-bg: var(--harbor-panel); border-top: 4px solid var(--harbor); }
+  .panel.team-research { --panel-bg: var(--dawn-panel); border-top: 4px solid var(--dawn); }
   .panel h3 { margin: 0; font-size: 1.15rem; text-align: center; }
   .panel.software h3 { color: var(--water); }
-  .panel.marketing h3 { color: var(--gold); }
-  .panel.finance h3 { color: var(--harbor); }
-  .panel.research h3 { color: var(--dawn); }
+  .panel.team-marketing h3 { color: var(--gold); }
+  .panel.team-finance h3 { color: var(--harbor); }
+  .panel.team-research h3 { color: var(--dawn); }
   .panel-rules { width: 100%; margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: .84rem; }
   .panel-rules li { padding: 4px 10px; border-radius: 10px; background: var(--accent-bg, var(--harbor-bg)); color: var(--accent, var(--harbor)); font-weight: 600; }
-  .panel.research .panel-rules { --accent: var(--dawn); --accent-bg: var(--dawn-bg); }
+  .panel.team-research .panel-rules { --accent: var(--dawn); --accent-bg: var(--dawn-bg); }
   .phases { width: 100%; margin: 10px 0 0; padding-left: 0; list-style: none; font-size: .84rem; color: var(--muted); }
   .phases li { margin: 2px 0; }
   .panel .sub { margin: 0 0 12px; color: var(--muted); font-size: .88rem; text-align: center; }
@@ -248,7 +250,7 @@
     .teams { order: 5; grid-template-columns: minmax(0, 1fr); gap: 34px; padding-top: 0; }
     .teams::before { display: none; }
     .panel::before { display: none; }
-    .split .sunny { order: 6; width: 100%; margin-top: 28px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .split .peer-branch { order: 6; width: 100%; margin-top: 28px; border-top: 1px solid var(--line); padding-top: 22px; }
   }
 
   /* ---------- flows ---------- */
@@ -271,9 +273,9 @@
   .steps span { color: var(--muted); font-size: .9rem; }
   .steps li.approve::before { content: "✓"; background: var(--human-bg); color: var(--human); border-color: var(--human); }
   .flow.software { --flow-fg: var(--water); --flow-bg: var(--water-bg); }
-  .flow.marketing { --flow-fg: var(--gold); --flow-bg: var(--gold-bg); }
-  .flow.finance { --flow-fg: var(--harbor); --flow-bg: var(--harbor-bg); }
-  .flow.research { --flow-fg: var(--dawn); --flow-bg: var(--dawn-bg); }
+  .flow.team-marketing { --flow-fg: var(--gold); --flow-bg: var(--gold-bg); }
+  .flow.team-finance { --flow-fg: var(--harbor); --flow-bg: var(--harbor-bg); }
+  .flow.team-research { --flow-fg: var(--dawn); --flow-bg: var(--dawn-bg); }
   .flow.cross { --flow-fg: var(--moon); --flow-bg: var(--moon-bg); }
   .flow.report { --flow-fg: var(--report); --flow-bg: color-mix(in srgb, var(--report) 14%, var(--surface)); }
   .flow-note { margin: 12px 0 0; padding: 8px 12px; border-radius: 10px; background: var(--surface-2); font-size: .86rem; color: var(--muted); }
@@ -288,9 +290,9 @@
   .models .sub { color: var(--muted); font-size: .85rem; }
   .models tr.group td { background: var(--surface-2); font-size: .85rem; font-weight: 700; padding: 6px 14px; }
   .models tr.group.software td { color: var(--water); }
-  .models tr.group.marketing td { color: var(--gold); }
-  .models tr.group.finance td { color: var(--harbor); }
-  .models tr.group.research td { color: var(--dawn); }
+  .models tr.group.team-marketing td { color: var(--gold); }
+  .models tr.group.team-finance td { color: var(--harbor); }
+  .models tr.group.team-research td { color: var(--dawn); }
   .models .planned { color: var(--muted); font-weight: 600; font-size: .78rem; border: 1px dashed var(--line-strong); border-radius: 999px; padding: 0 6px; margin-left: 4px; }
   @media (max-width: 560px) {
     .models thead { display: none; }
@@ -329,14 +331,14 @@
   <div class="wrap">
     <p class="eyebrow">ทีม 1x · ทีมของเปรม</p>
     <h1>Monday Team 🌙🐾 — ทีมของเปรม</h1>
-    <p class="lede">Monday เป็นตัวแทนเปรม ดูแลสี่ทีม: <b>ทีม Software</b> 🌊 (สร้างของ — วิดีโอ เว็บ เครื่องมือ) · <b>ทีม Marketing</b> 🌕 (บอกโลกว่าเราทำอะไร) · <b>ทีม Finance</b> ⚓ (ให้เปรมเห็นเงินของตัวเองชัด — ไม่แตะเงินจริง) · <b>ทีม Research</b> 🌅 (หาโอกาสจากทั่วโลกเป็น input ให้ทีมสร้าง) · ใครทำอะไร ใช้ model อะไร งานไหลทางไหน และรายงานย้อนขึ้นอย่างไร</p>
+    <p class="lede">Monday เป็นตัวแทนเปรม ดูแลสี่ทีม: <b>ทีม Software</b> 🌊 (สร้างของ — วิดีโอ เว็บ เครื่องมือ) · <b>ทีม Marketing</b> 🌕 (บอกโลกว่าเราทำอะไร) · <b>ทีม Finance</b> ⚓ (ให้เปรมเห็นเงินของตัวเองชัด — ไม่แตะเงินจริง) · <b>ทีม Research</b> 🌅 (หาโอกาสจากทั่วโลกเป็น input ให้ทีมสร้าง) · ใครทำอะไร ใช้ engine อะไร งานไหลทางไหน และรายงานย้อนขึ้นอย่างไร</p>
     <div class="badges">
-      <span class="badge">📅 ข้อมูล ณ 2026-10-14 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
+      <span class="badge">📅 ข้อมูล ณ 2026-10-17 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
       <span class="badge">🌙 4 ทีม</span>
-      <span class="badge water">🌊 Software · 4 ตัว</span>
-      <span class="badge gold">🌕 Marketing · 3 ตัว + 1 รอเกิด</span>
+      <span class="badge water">🌊 Software · 5 ตัว</span>
+      <span class="badge gold">🌕 Marketing · 4 ตัว + 1 รอเกิด</span>
       <span class="badge harbor">⚓ Finance · 3 ตัว + 1 รอเกิด</span>
-      <span class="badge dawn">🌅 Research · 3 ตัว + 1 รอเกิด</span>
+      <span class="badge dawn">🌅 Research · 5 ตัว</span>
     </div>
   </div>
 </header>
@@ -363,24 +365,25 @@
 
       <div class="split">
         <div class="branch monday">
-          <article class="card node p-moon">
-            <p class="who"><span class="emo">🌙</span>Monday <span class="tag">🐾 root</span></p>
+          <article data-session="10-monday" class="card node p-moon">
+            <p class="who"><span class="emo">🌙</span>Monday <span class="tag">🐾 root</span> <span class="eng eng-claude">Claude</span></p>
             <p class="role">root oracle ตัวแทนเปรม · ส่ง brief ให้ทั้งสี่ทีม · รายงานเปรม</p>
             <dl>
               <dt>session</dt><dd><code>10-monday</code></dd>
-              <dt>model</dt><dd>Fable 5.1</dd>
+              <dt>engine</dt><dd>Claude · Fable 5.1</dd>
               <dt>repo</dt><dd class="mono">sukistudio/monday-oracle</dd>
             </dl>
           </article>
         </div>
 
-        <div class="branch sunny">
+        <div class="branch peer-branch">
           <p class="peer-label">ทีม peer (0x)</p>
-          <article class="card node p-sun">
-            <p class="who"><span class="emo">☀️</span>Sunny <span class="tag">🐾 หลัก</span></p>
+          <article data-session="00-sunny" class="card node p-sun">
+            <p class="who"><span class="emo">☀️</span>Sunny <span class="tag">🐾 หลัก</span> <span class="eng eng-claude">Claude</span></p>
             <p class="role">oracle หลัก · หัวหน้าทีม 0x</p>
             <dl>
               <dt>session</dt><dd><code>00-sunny</code></dd>
+              <dt>engine</dt><dd>Claude · ไม่ระบุรุ่น</dd>
             </dl>
           </article>
           <div class="team-sunny">
@@ -405,42 +408,51 @@
         <div class="panel software">
           <h3>🌊 ทีม Software</h3>
           <p class="sub">สร้างของ — วิดีโอแผนที่, เว็บ · โทนน้ำ</p>
-          <article class="card node p-water">
-            <p class="who"><span class="emo">🌊</span>Tide <span class="tag">lead</span></p>
+          <article data-session="11-tide" class="card node p-water">
+            <p class="who"><span class="emo">🌊</span>Tide <span class="tag">lead</span> <span class="eng eng-claude">Claude</span></p>
             <p class="role">หัวหน้าทีม Software · triage / review PR / merge</p>
             <dl>
               <dt>session</dt><dd><code>11-tide</code></dd>
-              <dt>model</dt><dd>Fable 5.1</dd>
+              <dt>engine</dt><dd>Claude · Fable 5.1</dd>
               <dt>repo</dt><dd class="mono">sukistudio/tide-oracle</dd>
             </dl>
           </article>
           <div class="edge short"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
           <div class="members">
-            <article class="card p-water">
-              <p class="who"><span class="emo">🌊</span>Ripple <span class="tag">dev</span></p>
+            <article data-session="111-ripple" class="card p-water">
+              <p class="who"><span class="emo">🌊</span>Ripple <span class="tag">dev</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">style components · เว็บ</p>
               <dl>
                 <dt>session</dt><dd><code>111-ripple</code></dd>
-                <dt>model</dt><dd>Opus 5.5</dd>
+                <dt>engine</dt><dd>Claude · Opus 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/ripple-oracle</dd>
               </dl>
             </article>
-            <article class="card p-water">
-              <p class="who"><span class="emo">🌊</span>Swell <span class="tag">dev</span></p>
+            <article data-session="112-swell" class="card p-water">
+              <p class="who"><span class="emo">🌊</span>Swell <span class="tag">dev</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">skill / workflow · เกิด 2026-10-11</p>
               <dl>
                 <dt>session</dt><dd><code>112-swell</code></dd>
-                <dt>model</dt><dd>Opus 5.5</dd>
+                <dt>engine</dt><dd>Claude · Opus 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/swell-oracle</dd>
               </dl>
             </article>
-            <article class="card p-shore">
-              <p class="who"><span class="emo">🏖️</span>Shore <span class="tag">QA</span></p>
+            <article data-session="113-shore" class="card p-shore">
+              <p class="who"><span class="emo">🏖️</span>Shore <span class="tag">QA</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">ตรวจตาม checklist · รัน test จริง</p>
               <dl>
                 <dt>session</dt><dd><code>113-shore</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/shore-oracle</dd>
+              </dl>
+            </article>
+            <article class="card p-water" data-session="114-eddy-omx">
+              <p class="who"><span class="emo">🌀</span>Eddy <span class="tag">OMX</span> <span class="eng eng-codex">Codex</span></p>
+              <p class="role">dev OMX/Codex</p>
+              <dl>
+                <dt>session</dt><dd><code>114-eddy-omx</code></dd>
+                <dt>engine</dt><dd>Codex (OMX)</dd>
+                <dt>เกิด</dt><dd>2026-10-16</dd>
               </dl>
             </article>
           </div>
@@ -448,93 +460,102 @@
         </div>
 
         <!-- Marketing -->
-        <div class="panel marketing">
+        <div class="panel team-marketing">
           <h3>🌕 ทีม Marketing</h3>
           <p class="sub">บอกโลกว่าเราทำอะไร · โทนแสงจันทร์</p>
-          <article class="card node p-gold">
-            <p class="who"><span class="emo">🌕</span>Beam <span class="tag">lead</span></p>
+          <article data-session="12-beam" class="card node p-gold">
+            <p class="who"><span class="emo">🌕</span>Beam <span class="tag">lead</span> <span class="eng eng-claude">Claude</span></p>
             <p class="role">brief → strategy → calendar → มอบงาน → review + merge → ส่งเปรม approve → วัดผล · เกิด 2026-10-11</p>
             <dl>
               <dt>session</dt><dd><code>12-beam</code></dd>
-              <dt>model</dt><dd>Fable 5.1 → Opus 5.5</dd>
+              <dt>engine</dt><dd>Claude · Fable 5.1 → Opus 5.5</dd>
               <dt>repo</dt><dd class="mono">sukistudio/beam-oracle</dd>
             </dl>
           </article>
           <div class="edge short"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
           <div class="members">
-            <article class="card p-gold">
-              <p class="who"><span class="emo">✨</span>Glow <span class="tag">ทำงานอยู่ · เกิด 2026-10-11</span></p>
+            <article data-session="121-glow" class="card p-gold">
+              <p class="who"><span class="emo">✨</span>Glow <span class="tag">ทำงานอยู่ · เกิด 2026-10-11</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">Content/Copy — โพสต์ บทคลิป caption SEO อีเมล (ไทย+อังกฤษ)</p>
               <dl>
                 <dt>session</dt><dd><code>121-glow</code></dd>
-                <dt>model</dt><dd>Opus 5.5</dd>
+                <dt>engine</dt><dd>Claude · Opus 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/glow-oracle</dd>
               </dl>
               <p class="when">เกิด 2026-10-11 · sprint 1 ทางเลือก A</p>
             </article>
-            <article class="card planned">
-              <p class="who"><span class="emo">🔷</span>Prism <span class="tag">รอเกิด</span></p>
+            <article data-session="122-prism" class="card planned">
+              <p class="who"><span class="emo">🔷</span>Prism <span class="tag">รอเกิด</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">Creative/Visual — thumbnail social card storyboard · brief วิดีโอให้ทีม Software</p>
               <dl>
                 <dt>session</dt><dd><code>122-prism</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5 → Opus เมื่อคิด concept</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5 → Opus เมื่อคิด concept</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/prism-oracle</dd>
               </dl>
               <p class="when">เปิดเมื่อ: มีงานภาพจริง</p>
             </article>
-            <article class="card p-gold">
-              <p class="who"><span class="emo">💓</span>Pulse <span class="tag">ทำงานอยู่ · เกิด 2026-10-11</span></p>
+            <article data-session="123-pulse" class="card p-gold">
+              <p class="who"><span class="emo">💓</span>Pulse <span class="tag">ทำงานอยู่ · เกิด 2026-10-11</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">Research/Analytics/QA — วิจัยตลาด-คู่แข่ง · วัดผล · ตรวจ fact/เสียงแบรนด์/Rule 6 ก่อนปล่อย</p>
               <dl>
                 <dt>session</dt><dd><code>123-pulse</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/pulse-oracle</dd>
               </dl>
               <p class="when">เกิด 2026-10-11 · sprint 1 ทางเลือก A</p>
+            </article>
+            <article class="card p-gold" data-session="124-halo-omx">
+              <p class="who"><span class="emo">🌙</span>Halo <span class="tag">OMX</span> <span class="eng eng-codex">Codex</span></p>
+              <p class="role">ผู้ผลิตชิ้นงาน OMX</p>
+              <dl>
+                <dt>session</dt><dd><code>124-halo-omx</code></dd>
+                <dt>engine</dt><dd>Codex (OMX)</dd>
+                <dt>เกิด</dt><dd>2026-10-16</dd>
+              </dl>
             </article>
           </div>
           <p class="panel-note">ไม่ bud ล่วงหน้า — ทุกตัวที่เกิดต้องมีงานรอ</p>
         </div>
 
         <!-- Finance -->
-        <div class="panel finance">
+        <div class="panel team-finance">
           <h3>⚓ ทีม Finance</h3>
           <p class="sub">การเงิน · การลงทุน · ทรัพย์สิน · บัญชีส่วนตัว (+ธุรกิจภายหลัง) · โทนท่าเรือ</p>
-          <article class="card node p-harbor">
-            <p class="who"><span class="emo">⚓</span>Harbor <span class="tag">lead</span></p>
+          <article data-session="13-harbor" class="card node p-harbor">
+            <p class="who"><span class="emo">⚓</span>Harbor <span class="tag">lead</span> <span class="eng eng-claude">Claude</span></p>
             <p class="role">หัวหน้าทีม Finance · ผังบัญชี/รายงาน · review ตัวเลข · รายงาน Monday · เกิด 2026-10-12</p>
             <dl>
               <dt>session</dt><dd><code>13-harbor</code></dd>
-              <dt>model</dt><dd>Fable 5.1</dd>
+              <dt>engine</dt><dd>Claude · Fable 5.1</dd>
               <dt>repo</dt><dd class="mono">sukistudio/harbor-oracle</dd>
             </dl>
           </article>
           <div class="edge short"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
           <div class="members">
-            <article class="card p-harbor">
-              <p class="who"><span class="emo">📒</span>Ledger <span class="tag">ทำงานอยู่ · เกิด 2026-10-12</span></p>
+            <article data-session="131-ledger" class="card p-harbor">
+              <p class="who"><span class="emo">📒</span>Ledger <span class="tag">ทำงานอยู่ · เกิด 2026-10-12</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">บัญชี — import statement → จัดหมวด → งบรายเดือน</p>
               <dl>
                 <dt>session</dt><dd><code>131-ledger</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/ledger-oracle</dd>
               </dl>
             </article>
-            <article class="card planned">
-              <p class="who"><span class="emo">🧭</span>Compass <span class="tag">รอเกิด</span></p>
+            <article data-session="132-compass" class="card planned">
+              <p class="who"><span class="emo">🧭</span>Compass <span class="tag">รอเกิด</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">ลงทุน/ทรัพย์สิน — พอร์ต · ผลตอบแทนจริง · เทียบตัวเลือก</p>
               <dl>
                 <dt>session</dt><dd><code>132-compass</code></dd>
-                <dt>model</dt><dd>Opus 5.5</dd>
+                <dt>engine</dt><dd>Claude · Opus 5.5</dd>
               </dl>
               <p class="when">เปิดเมื่อ: ทบทวนพอร์ต</p>
             </article>
-            <article class="card p-harbor">
-              <p class="who"><span class="emo">🏮</span>Lantern <span class="tag">ทำงานอยู่ · เกิด 2026-10-12</span></p>
+            <article data-session="133-lantern" class="card p-harbor">
+              <p class="who"><span class="emo">🏮</span>Lantern <span class="tag">ทำงานอยู่ · เกิด 2026-10-12</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">QA/ความเสี่ยง — reconcile ทุกตัวเลข · ตรวจ PII ก่อน commit · ปฏิทินครบกำหนด</p>
               <dl>
                 <dt>session</dt><dd><code>133-lantern</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/lantern-oracle</dd>
               </dl>
             </article>
@@ -552,45 +573,54 @@
         </div>
 
         <!-- Research -->
-        <div class="panel research">
+        <div class="panel team-research">
           <h3>🌅 ทีม Research</h3>
           <p class="sub">หาโอกาสจากทั่วโลกเป็น input ให้ทีมสร้าง · ไทยและต่างประเทศ · โทนขอบฟ้ารุ่งอรุณ</p>
-          <article class="card node p-dawn">
-            <p class="who"><span class="emo">🌅</span>Horizon <span class="tag">lead</span></p>
+          <article data-session="14-horizon" class="card node p-dawn">
+            <p class="who"><span class="emo">🌅</span>Horizon <span class="tag">lead</span> <span class="eng eng-claude">Claude</span></p>
             <p class="role">หัวหน้าทีม Research · ตั้งแหล่ง · เกณฑ์คะแนน · สังเคราะห์ Opportunity Report รายศุกร์ · รายงาน Monday · เกิด 2026-10-13</p>
             <dl>
               <dt>session</dt><dd><code>14-horizon</code></dd>
-              <dt>model</dt><dd>Fable 5.1</dd>
+              <dt>engine</dt><dd>Claude · Fable 5.1</dd>
               <dt>repo</dt><dd class="mono">sukistudio/horizon-oracle</dd>
             </dl>
           </article>
           <div class="edge short"><span class="lbl"><span class="w">↓ งาน</span><span class="r">↑ รายงาน</span></span></div>
           <div class="members">
-            <article class="card p-dawn">
-              <p class="who"><span class="emo">🔭</span>Scout <span class="tag">ทำงานอยู่ · เกิด 2026-10-13</span></p>
+            <article data-session="141-scout" class="card p-dawn">
+              <p class="who"><span class="emo">🔭</span>Scout <span class="tag">ทำงานอยู่ · เกิด 2026-10-13</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">เก็บ/คัด — ดูแล script สแกน 3 รอบ/วัน · คัดเข้า digest รายวัน · tag หมวด</p>
               <dl>
                 <dt>session</dt><dd><code>141-scout</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/scout-oracle</dd>
               </dl>
             </article>
-            <article class="card planned">
-              <p class="who"><span class="emo">🗺️</span>Chart <span class="tag">รอเกิด</span></p>
+            <article data-session="142-chart" class="card p-dawn">
+              <p class="who"><span class="emo">🗺️</span>Chart <span class="tag">ทำงานอยู่</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">วิเคราะห์/เจาะลึก — ขนาดตลาด · คู่แข่ง · โมเดลหาเงิน · deep-dive รายเดือน</p>
               <dl>
                 <dt>session</dt><dd><code>142-chart</code></dd>
-                <dt>model</dt><dd>Opus 5.5</dd>
+                <dt>engine</dt><dd>Claude · Opus 5.5</dd>
               </dl>
-              <p class="when">เปิดเมื่อ: มี report ให้เจาะ</p>
+              <p class="when">เกิด 2026-10-16</p>
             </article>
-            <article class="card p-dawn">
-              <p class="who"><span class="emo">🧭</span>Sextant <span class="tag">ทำงานอยู่ · เกิด 2026-10-13</span></p>
+            <article data-session="143-sextant" class="card p-dawn">
+              <p class="who"><span class="emo">🧭</span>Sextant <span class="tag">ทำงานอยู่ · เกิด 2026-10-13</span> <span class="eng eng-claude">Claude</span></p>
               <p class="role">fact-check — ทุกข้ออ้างมีแหล่งจริง · ตัวเลขตรงแหล่ง · ไม่ซ้ำของที่เปรมปัด</p>
               <dl>
                 <dt>session</dt><dd><code>143-sextant</code></dd>
-                <dt>model</dt><dd>Sonnet 5.5</dd>
+                <dt>engine</dt><dd>Claude · Sonnet 5.5</dd>
                 <dt>repo</dt><dd class="mono">sukistudio/sextant-oracle</dd>
+              </dl>
+            </article>
+            <article class="card p-dawn" data-session="144-buoy-omx">
+              <p class="who"><span class="emo">🛟</span>Buoy <span class="tag">OMX</span> <span class="eng eng-codex">Codex</span></p>
+              <p class="role">script/parser OMX</p>
+              <dl>
+                <dt>session</dt><dd><code>144-buoy-omx</code></dd>
+                <dt>engine</dt><dd>Codex (OMX)</dd>
+                <dt>เกิด</dt><dd>2026-10-16</dd>
               </dl>
             </article>
           </div>
@@ -609,6 +639,8 @@
     </div>
   </section>
 
+  <p class="flow-note">Claude คิด/ตรวจ · Codex ลงมือ — OMX (Codex) ทำงานใน worktree ของ repo งาน เปิด PR ให้ Claude review/QA ก่อน merge เสมอ</p>
+
   <!-- ===== Flows ===== -->
   <section aria-labelledby="h-flow">
     <h2 id="h-flow">การไหลของงาน</h2>
@@ -624,7 +656,7 @@
           <li><b>🌊 Tide merge</b><span>เมื่อ QA PASS + review</span></li>
         </ol>
       </div>
-      <div class="flow marketing">
+      <div class="flow team-marketing">
         <h3>🌕 สาย Marketing</h3>
         <ol class="steps">
           <li><b>🌙 Monday → 🌕 Beam</b><span>brief</span></li>
@@ -636,7 +668,7 @@
           <li class="approve"><b>👤 เปรม approve ก่อนโพสต์</b><span>ทุกโพสต์สาธารณะ</span></li>
         </ol>
       </div>
-      <div class="flow finance">
+      <div class="flow team-finance">
         <h3>⚓ สาย Finance</h3>
         <ol class="steps">
           <li><b>🌙 Monday → ⚓ Harbor</b><span>brief</span></li>
@@ -647,7 +679,7 @@
         </ol>
         <p class="flow-note">ทีมไม่แตะเงินจริง — เปรมเป็นคนกดทุกอย่างเอง · ข้อเสนอลงทุนเป็นตัวเลือกพร้อมข้อมูล</p>
       </div>
-      <div class="flow research">
+      <div class="flow team-research">
         <h3>🌅 สาย Research</h3>
         <ol class="steps">
           <li><b>🕕 script สแกน 3 รอบ/วัน</b><span>แหล่งฟรี/public · ไม่ใช่ agent เปิดทิ้ง</span></li>
@@ -685,7 +717,7 @@
     <h2 id="h-model">ตาราง model</h2>
     <p class="section-note">เลือก model ตามน้ำหนักของงาน ไม่ใช่ตามตำแหน่ง</p>
     <table class="models">
-      <thead><tr><th>ใคร</th><th>Model</th><th>ทำไม</th></tr></thead>
+      <thead><tr><th>ใคร</th><th>Engine / Model</th><th>ทำไม</th></tr></thead>
       <tbody>
         <tr><td>👤 เปรม</td><td class="m">—</td><td>human</td></tr>
         <tr><td>🌙 Monday <code>10-monday</code></td><td class="m">Fable 5.1</td><td>ตัวแทนเปรม ถือ context ข้ามทีม ตัดสินใจ</td></tr>
@@ -694,23 +726,24 @@
         <tr><td>🌊 Ripple <code>111-ripple</code></td><td class="m">Opus 5.5</td><td>dev style components / เว็บ — คิดลึกพอสำหรับงานที่ไม่มี spec ละเอียด</td></tr>
         <tr><td>🌊 Swell <code>112-swell</code></td><td class="m">Opus 5.5</td><td>dev สาย skill / workflow</td></tr>
         <tr><td>🏖️ Shore <code>113-shore</code></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist + รัน test จริง</td></tr>
-        <tr class="group marketing"><td colspan="3">🌕 ทีม Marketing</td></tr>
+        <tr class="group team-marketing"><td colspan="3">🌕 ทีม Marketing</td></tr>
         <tr><td>🌕 Beam <code>12-beam</code></td><td class="m">Fable 5.1 → Opus 5.5</td><td>lead: strategy / มอบงาน / review + merge</td></tr>
         <tr><td>✨ Glow <code>121-glow</code></td><td class="m">Opus 5.5</td><td>งานเขียนไทยเป็นหน้าตาแบรนด์</td></tr>
         <tr><td>🔷 Prism <code>122-prism</code><span class="planned">รอเกิด</span></td><td><span class="m">Sonnet 5.5</span><br><span class="sub">→ Opus เมื่อคิด concept</span></td><td>งานภาพตาม brief · คิด concept ใช้ model ใหญ่</td></tr>
         <tr><td>💓 Pulse <code>123-pulse</code></td><td class="m">Sonnet 5.5</td><td>ทำตาม checklist ดึงตัวเลข</td></tr>
-        <tr class="group finance"><td colspan="3">⚓ ทีม Finance</td></tr>
+        <tr class="group team-finance"><td colspan="3">⚓ ทีม Finance</td></tr>
         <tr><td>⚓ Harbor <code>13-harbor</code></td><td><span class="m">Fable 5.1</span><br><span class="sub">→ Opus 5.5 หลังตั้งทีม</span></td><td>lead: ออกแบบผังบัญชี/รายงาน · review ตัวเลข · อ่านเจตนาเปรม</td></tr>
         <tr><td>📒 Ledger <code>131-ledger</code></td><td class="m">Sonnet 5.5</td><td>งานโครงสร้างซ้ำตามกฎ — ต้องแม่น</td></tr>
         <tr><td>🧭 Compass <code>132-compass</code><span class="planned">รอเกิด</span></td><td class="m">Opus 5.5</td><td>วิเคราะห์ลงทุน ให้เหตุผลหลายชั้น</td></tr>
         <tr><td>🏮 Lantern <code>133-lantern</code></td><td class="m">Sonnet 5.5</td><td>checklist + reconcile ตัวเลข — เข้มแต่ไม่ต้องสร้างสรรค์</td></tr>
-        <tr class="group research"><td colspan="3">🌅 ทีม Research</td></tr>
+        <tr class="group team-research"><td colspan="3">🌅 ทีม Research</td></tr>
         <tr><td>🌅 Horizon <code>14-horizon</code></td><td class="m">Fable 5.1</td><td>lead: สังเคราะห์ report · ตั้งเกณฑ์คะแนน · ตัดสินว่าอะไรถึงเปรม</td></tr>
         <tr><td>🔭 Scout <code>141-scout</code></td><td class="m">Sonnet 5.5</td><td>คัดผลสแกนรายวันตามเกณฑ์ — งานซ้ำ ต้องเร็ว</td></tr>
         <tr><td>🗺️ Chart <code>142-chart</code><span class="planned">รอเกิด</span></td><td class="m">Opus 5.5</td><td>เจาะลึกตลาด/คู่แข่ง/โมเดลหาเงิน ให้เหตุผลหลายชั้น</td></tr>
         <tr><td>🧭 Sextant <code>143-sextant</code></td><td class="m">Sonnet 5.5</td><td>checklist fact-check — ตรวจแหล่งและตัวเลข</td></tr>
         <tr class="group"><td colspan="3">ทุกทีม</td></tr>
         <tr><td>🏹 Arrows</td><td><span class="m">Haiku 4.5</span><br><span class="sub">subagent อ่าน/สรุป ภายในทุกตัว</span></td><td>อ่านอย่างเดียว ถูกสุด — รายงานเป็นคำกล่าวอ้าง ต้องตรวจ</td></tr>
+        <tr><td>Eddy · Halo · Buoy</td><td>Codex (OMX)</td><td>ลงมือใน worktree · เปิด PR ให้ Claude review/QA</td></tr>
       </tbody>
     </table>
   </section>
@@ -758,11 +791,11 @@
     <div class="grid-themes">
       <div class="theme p-sun"><h3><span class="emo">☀️</span> Sunny</h3><p>Sun-day — วันอาทิตย์ ทีมแรก</p></div>
       <div class="theme p-moon"><h3><span class="emo">🌙</span> Monday</h3><p>Moon-day — วันจันทร์ ดูแลทั้งน้ำและแสง</p></div>
-      <div class="theme p-water"><h3><span class="emo">🌊</span> Tide · Ripple · Swell</h3><p>น้ำขึ้นลงตามจันทร์ · ระลอกที่ลงมือ · คลื่นยาวที่พาไปไกล</p></div>
+      <div class="theme p-water"><h3><span class="emo">🌊</span> Tide · Ripple · Swell · Eddy</h3><p>น้ำขึ้นลงตามจันทร์ · ระลอกที่ลงมือ · คลื่นยาวที่พาไปไกล</p></div>
       <div class="theme p-shore"><h3><span class="emo">🏖️</span> Shore</h3><p>ฝั่ง — ที่คลื่นทุกลูกต้องมาถึงและถูกตรวจ</p></div>
-      <div class="theme p-gold"><h3><span class="emo">🌕</span> Beam · Glow · Prism · Pulse</h3><p>ลำแสงจันทร์ · แสงเรือง · ปริซึมแยกสี · ชีพจรที่วัดผล</p></div>
+      <div class="theme p-gold"><h3><span class="emo">🌕</span> Beam · Glow · Prism · Pulse · Halo</h3><p>ลำแสงจันทร์ · แสงเรือง · ปริซึมแยกสี · ชีพจรที่วัดผล</p></div>
       <div class="theme p-harbor"><h3><span class="emo">⚓</span> Harbor · Ledger · Compass · Lantern</h3><p>ท่าเรือที่เก็บของปลอดภัย · สมุดบัญชี · เข็มทิศชี้ทางลงทุน · ตะเกียงส่องความเสี่ยงก่อนชน</p></div>
-      <div class="theme p-dawn"><h3><span class="emo">🌅</span> Horizon · Scout · Chart · Sextant</h3><p>ขอบฟ้าที่โอกาสโผล่ขึ้น · กล้องส่องไกล · แผนที่เดินเรือ · เครื่องวัดมุมดาวตรวจตำแหน่งให้แม่น</p></div>
+      <div class="theme p-dawn"><h3><span class="emo">🌅</span> Horizon · Scout · Chart · Sextant · Buoy</h3><p>ขอบฟ้าที่โอกาสโผล่ขึ้น · กล้องส่องไกล · แผนที่เดินเรือ · เครื่องวัดมุมดาวตรวจตำแหน่งให้แม่น</p></div>
     </div>
   </section>
 
@@ -770,7 +803,7 @@
 
 <footer>
   <div class="wrap">
-    <p>📅 ข้อมูล ณ 2026-10-14 (monday-oracle <span class="mono">1f07490</span> · roster ตรงกับ <code>team.json</code> ของ office) · เดิมคือ software-team-chart (ทีม Software อย่างเดียว)</p>
+    <p>📅 ข้อมูล ณ 2026-10-17 (ตรวจรายชื่อกับ public feed v3 ก่อน deploy) · เดิมคือ software-team-chart (ทีม Software อย่างเดียว)</p>
     <p>🤖 สร้างโดย Tide/Ripple/Swell/Shore จาก [เปรม] → sukistudio/monday-team-chart</p>
   </div>
 </footer>

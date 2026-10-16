@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 3,
+  "members": [
+    { "id": "10-monday" },
+    { "id": "11-tide" },
+    { "id": "111-ripple" },
+    { "id": "112-swell" },
+    { "id": "113-shore" },
+    { "id": "12-beam" },
+    { "id": "121-glow" },
+    { "id": "123-pulse" },
+    { "id": "13-harbor" },
+    { "id": "131-ledger" },
+    { "id": "133-lantern" },
+    { "id": "14-horizon" },
+    { "id": "141-scout" },
+    { "id": "142-chart" },
+    { "id": "143-sextant" }
+  ]
+}
