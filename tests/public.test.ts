@@ -25,14 +25,29 @@ const PRIVATE_HASHES = new Set([
   "c2333a7e3a607935c67c1e6f6810395decc9f66f592b812aaada7db94ba215d6",
 ]);
 const privateHits = (text: string, hashes = PRIVATE_HASHES) => [...text.matchAll(/[A-Za-z0-9_-]+/g)].filter(([token]) => hashes.has(createHash("sha256").update(token).digest("hex"))).length;
+// Preserve the original case-insensitive substring check without storing the forbidden text.
+function containsHashedText(text: string, digest: string, length: number): boolean {
+  const lower = text.toLowerCase();
+  for (let i = 0; i <= lower.length - length; i++) {
+    if (createHash("sha256").update(lower.slice(i, i + length)).digest("hex") === digest) return true;
+  }
+  return false;
+}
 const cards = [...html.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/g)].map(([card]) => card);
 const agents = cards.filter((card) => !/class="[^"]*p-human/.test(card));
 
 describe("public page gate", () => {
   test("no machine paths, account details, forbidden project word or private tokens anywhere in HTML", () => {
     expect(html).not.toMatch(/\/Users\/|SUKISTUDIO_OS|(?:\/home\/|[A-Z]:\\Users\\)|\baccount\b|บัญชี\s*ChatGPT|เลขบัญชี/i);
-    expect(html).not.toMatch(new RegExp(["luna", "tlas"].join(""), "i"));
+    expect(containsHashedText(html, "df3a0ca4865ea7006ca512c22db3f4f9114ff7ceb1809fa684d9f129dc7c03b6", 8)).toBe(false);
     expect(privateHits(html)).toBe(0);
+  });
+  test("hashed text check retains case-insensitive substring behavior", () => {
+    const digest = createHash("sha256").update("demo").digest("hex");
+    expect(containsHashedText("prefix-DeMo-suffix", digest, 4)).toBe(true);
+    expect(containsHashedText("<p>DEMO</p>", digest, 4)).toBe(true);
+    expect(containsHashedText("dem", digest, 4)).toBe(false);
+    expect(containsHashedText("unrelated", digest, 4)).toBe(false);
   });
   test("hash gate detects whole tokens without publishing real blocked names", () => {
     const hashes = new Set([createHash("sha256").update("zz-private-example").digest("hex")]);
