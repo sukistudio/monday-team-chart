@@ -30,7 +30,8 @@ const agents = cards.filter((card) => !/class="[^"]*p-human/.test(card));
 
 describe("public page gate", () => {
   test("no machine paths, account details, forbidden project word or private tokens anywhere in HTML", () => {
-    expect(html).not.toMatch(/\/Users\/|SUKISTUDIO_OS|(?:\/home\/|[A-Z]:\\Users\\)|\baccount\b|บัญชี\s*ChatGPT|เลขบัญชี|lunatlas/i);
+    expect(html).not.toMatch(/\/Users\/|SUKISTUDIO_OS|(?:\/home\/|[A-Z]:\\Users\\)|\baccount\b|บัญชี\s*ChatGPT|เลขบัญชี/i);
+    expect(html).not.toMatch(new RegExp(["luna", "tlas"].join(""), "i"));
     expect(privateHits(html)).toBe(0);
   });
   test("hash gate detects whole tokens without publishing real blocked names", () => {
