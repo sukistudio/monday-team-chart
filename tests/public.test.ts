@@ -125,3 +125,8 @@ describe("Atlas team", () => {
     expect(html.match(/--estate: /g)?.length).toBe(3);
   });
 });
+
+test("Real Estate header badge consumes its team accent", () => {
+  expect(html).toContain('<span class="badge p-estate">🗺️ Real Estate · 1 ตัว</span>');
+  expect(html).toMatch(/\.badge\.p-estate\s*\{\s*color:\s*var\(--accent\);?\s*\}/);
+});
