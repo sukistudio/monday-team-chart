@@ -102,3 +102,44 @@ describe("roster cards", () => {
     expect(html.split("Claude คิด/ตรวจ · Codex ลงมือ — OMX (Codex) ทำงานใน worktree ของ repo งาน เปิด PR ให้ Claude review/QA ก่อน merge เสมอ").length).toBe(2);
   });
 });
+
+describe("Atlas team", () => {
+  test("fifth lead has exact public facts and no unborn members", () => {
+    const card = agents.find(card => card.includes('data-session="15-atlas"'))!;
+    expect(card).toBeDefined();
+    expect(card).toContain('class="card node p-estate"');
+    expect(card).toContain('<span class="emo">🏡</span>Atlas <span class="tag">lead</span>');
+    expect(card).toContain('หัวหน้าทีมอสังหาของเปรม — ดีล/ประมูล/เช่า/เตรียมบริษัท agent · เกิด 2026-10-18');
+    expect(card).toContain('<dt>engine</dt><dd>Claude · Fable 5.1</dd>');
+    expect(card).toContain('sukistudio/atlas-oracle');
+    expect(html).not.toMatch(/data-session="15[123]-/);
+    const panel = html.split('<div class="panel team-estate">')[1]?.split('<!-- end Atlas -->')[0];
+    expect(panel).toBeDefined();
+    expect(panel).not.toMatch(/class="members"|class="edge/);
+    expect(html).toContain('🏡 ทีม Real Estate');
+    expect(html).toContain('Atlas <code>15-atlas</code></td><td class="m">Fable 5.1</td>');
+  });
+  test("five-column connector accounts for all four gaps and both theme overrides exist", () => {
+    expect(html).toContain('repeat(5, minmax(0, 1fr))');
+    expect(html).toContain('left: calc((100% - 80px) / 10); right: calc((100% - 80px) / 10)');
+    expect(html.match(/--estate: /g)?.length).toBe(3);
+  });
+});
+
+test("Real Estate header badge consumes its team accent", () => {
+  expect(html).toContain('<span class="badge p-estate">🏡 Real Estate · 1 ตัว</span>');
+  expect(html).toMatch(/\.badge\.p-estate\s*\{\s*color:\s*var\(--accent\);?\s*\}/);
+});
+
+
+test("Atlas uses the approved house emoji throughout while Chart keeps its map", () => {
+  const atlasLines = html.split("\n").filter(line => line.includes("Atlas") || line.includes("Real Estate"));
+  expect(atlasLines.join("\n")).not.toContain("🗺️");
+  expect(atlasLines.filter(line => line.includes("🏡"))).toHaveLength(7);
+  const chart = agents.find(card => card.includes('data-session="142-chart"'))!;
+  expect(chart).toContain('<span class="emo">🗺️</span>Chart');
+  expect(html).toContain('🗺️ Chart <code>142-chart</code>');
+  const readme = readFileSync(join(import.meta.dir, "..", "README.md"), "utf8");
+  expect(readme).toContain("Real Estate (Atlas 🏡)");
+  expect(readme).not.toContain("Atlas 🗺️");
+});

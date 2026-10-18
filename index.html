@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monday Team</title>
-<meta name="description" content="Monday Team 🌙🐾 — ทีมของเปรม 4 ทีม: Software (Tide) · Marketing (Beam) · Finance (Harbor) · Research (Horizon) · ใคร, session, บทบาท, engine, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-17">
+<meta name="description" content="Monday Team 🌙🐾 — ทีมของเปรม 5 ทีม: Software (Tide) · Marketing (Beam) · Finance (Harbor) · Research (Horizon) · Real Estate (Atlas) · ใคร, session, บทบาท, engine, การไหลของงานและการรายงาน · ข้อมูล ณ 2026-10-18">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌙%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +29,7 @@
     --gold: #8a6510;    --gold-bg: #fbf0d2;    --gold-panel: #f8f0dc;
     --harbor: #1d6b52;  --harbor-bg: #def1e7;  --harbor-panel: #e8f3ec;
     --dawn: #a21caf;     --dawn-bg: #fae8ff;   --dawn-panel: #fbf0fd;
+    --estate: #8a3f24; --estate-bg: #fbeee5; --estate-panel: #fcf3ec;
     --silver: #4f5b70;  --silver-bg: #e9edf3;
     --work: #1d5fb4;
     --report: #0f7a4f;
@@ -48,6 +49,7 @@
       --gold: #f2cf73; --gold-bg: #2d2714; --gold-panel: #1c1a1d;
       --harbor: #86d9b4; --harbor-bg: #10291f; --harbor-panel: #0e1f1c;
       --dawn: #e879f9; --dawn-bg: #4a044e; --dawn-panel: #1d1226;
+      --estate: #f3b593; --estate-bg: #38251e; --estate-panel: #241b19;
       --silver: #c9d2e3; --silver-bg: #222b42;
       --work: #8cbcff; --report: #6fdcaa; --link: #f2cf73;
       --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
@@ -63,6 +65,7 @@
     --gold: #f2cf73; --gold-bg: #2d2714; --gold-panel: #1c1a1d;
     --harbor: #86d9b4; --harbor-bg: #10291f; --harbor-panel: #0e1f1c;
     --dawn: #e879f9; --dawn-bg: #4a044e; --dawn-panel: #1d1226;
+    --estate: #f3b593; --estate-bg: #38251e; --estate-panel: #241b19;
     --silver: #c9d2e3; --silver-bg: #222b42;
     --work: #8cbcff; --report: #6fdcaa; --link: #f2cf73;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 14px rgba(0, 0, 0, .25);
@@ -99,6 +102,7 @@
   .badge.gold { color: var(--gold); }
   .badge.harbor { color: var(--harbor); }
   .badge.dawn { color: var(--dawn); }
+  .badge.p-estate { color: var(--accent); }
 
   section { padding: 28px 0 8px; }
   h2 { font-size: 1.35rem; margin: 0 0 4px; }
@@ -151,6 +155,8 @@
   .p-harbor { --accent: var(--harbor); --accent-bg: var(--harbor-bg); }
   .p-dawn   { --accent: var(--dawn);   --accent-bg: var(--dawn-bg); }
 
+  .p-estate { --accent: var(--estate); --accent-bg: var(--estate-bg); }
+
   /* ---------- org chart ---------- */
   .org { display: flex; flex-direction: column; align-items: center; }
   .org .node { width: 100%; max-width: 360px; }
@@ -195,16 +201,16 @@
   .team-sunny ul { margin: 0; padding-left: 18px; font-size: .88rem; }
   .team-sunny p { margin: 8px 0 0; font-size: .82rem; color: var(--muted); }
 
-  /* Monday → 4 ทีม · ≥1200px กว้างเกิน .wrap ให้ 4 คอลัมน์ · 761–1199px 2×2 (ไม่มีเส้นเชื่อม) */
+  /* Monday → 5 ทีม · ≥1200px กว้างเกิน .wrap ให้ 5 คอลัมน์ · 761–1199px 2 คอลัมน์ (ไม่มีเส้นเชื่อม) */
   .teams {
     position: relative; width: 100%;
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px;
     padding-top: 26px;
   }
   @media (min-width: 1200px) {
-    .teams { width: min(1360px, 100vw - 32px); }
+    .teams { width: min(1600px, 100vw - 32px); }
   }
-  .teams::before { content: ""; position: absolute; top: 0; left: calc((100% - 60px) / 8); right: calc((100% - 60px) / 8); border-top: 2px solid var(--line-strong); }
+  .teams::before { content: ""; position: absolute; top: 0; left: calc((100% - 80px) / 10); right: calc((100% - 80px) / 10); border-top: 2px solid var(--line-strong); }
   @media (min-width: 761px) and (max-width: 1199px) {
     .teams { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
     .teams::before, .teams .panel::before { display: none; }
@@ -222,6 +228,8 @@
   .panel.team-marketing { --panel-bg: var(--gold-panel); border-top: 4px solid var(--gold); }
   .panel.team-finance { --panel-bg: var(--harbor-panel); border-top: 4px solid var(--harbor); }
   .panel.team-research { --panel-bg: var(--dawn-panel); border-top: 4px solid var(--dawn); }
+  .panel.team-estate { --panel-bg: var(--estate-panel); border-top: 4px solid var(--estate); }
+  .panel.team-estate h3 { color: var(--estate); }
   .panel h3 { margin: 0; font-size: 1.15rem; text-align: center; }
   .panel.software h3 { color: var(--water); }
   .panel.team-marketing h3 { color: var(--gold); }
@@ -292,6 +300,7 @@
   .models tr.group.software td { color: var(--water); }
   .models tr.group.team-marketing td { color: var(--gold); }
   .models tr.group.team-finance td { color: var(--harbor); }
+  .models tr.group.team-estate td { color: var(--estate); }
   .models tr.group.team-research td { color: var(--dawn); }
   .models .planned { color: var(--muted); font-weight: 600; font-size: .78rem; border: 1px dashed var(--line-strong); border-radius: 999px; padding: 0 6px; margin-left: 4px; }
   @media (max-width: 560px) {
@@ -331,14 +340,15 @@
   <div class="wrap">
     <p class="eyebrow">ทีม 1x · ทีมของเปรม</p>
     <h1>Monday Team 🌙🐾 — ทีมของเปรม</h1>
-    <p class="lede">Monday เป็นตัวแทนเปรม ดูแลสี่ทีม: <b>ทีม Software</b> 🌊 (สร้างของ — วิดีโอ เว็บ เครื่องมือ) · <b>ทีม Marketing</b> 🌕 (บอกโลกว่าเราทำอะไร) · <b>ทีม Finance</b> ⚓ (ให้เปรมเห็นเงินของตัวเองชัด — ไม่แตะเงินจริง) · <b>ทีม Research</b> 🌅 (หาโอกาสจากทั่วโลกเป็น input ให้ทีมสร้าง) · ใครทำอะไร ใช้ engine อะไร งานไหลทางไหน และรายงานย้อนขึ้นอย่างไร</p>
+    <p class="lede">Monday เป็นตัวแทนเปรม ดูแลห้าทีม: <b>ทีม Software</b> 🌊 (สร้างของ — วิดีโอ เว็บ เครื่องมือ) · <b>ทีม Marketing</b> 🌕 (บอกโลกว่าเราทำอะไร) · <b>ทีม Finance</b> ⚓ (ให้เปรมเห็นเงินของตัวเองชัด — ไม่แตะเงินจริง) · <b>ทีม Research</b> 🌅 (หาโอกาสจากทั่วโลกเป็น input ให้ทีมสร้าง) · <b>ทีม Real Estate</b> 🏡 (ดีล/ประมูล/เช่า/เตรียมบริษัท agent) · ใครทำอะไร ใช้ engine อะไร งานไหลทางไหน และรายงานย้อนขึ้นอย่างไร</p>
     <div class="badges">
-      <span class="badge">📅 ข้อมูล ณ 2026-10-17 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
-      <span class="badge">🌙 4 ทีม</span>
+      <span class="badge">📅 ข้อมูล ณ 2026-10-18 <small>· ผังจะเปลี่ยนเมื่อทีมโต</small></span>
+      <span class="badge">🌙 5 ทีม</span>
       <span class="badge water">🌊 Software · 5 ตัว</span>
       <span class="badge gold">🌕 Marketing · 4 ตัว + 1 รอเกิด</span>
       <span class="badge harbor">⚓ Finance · 3 ตัว + 1 รอเกิด</span>
       <span class="badge dawn">🌅 Research · 5 ตัว</span>
+      <span class="badge p-estate">🏡 Real Estate · 1 ตัว</span>
     </div>
   </div>
 </header>
@@ -348,7 +358,7 @@
   <!-- ===== Org chart ===== -->
   <section aria-labelledby="h-org">
     <h2 id="h-org">ผังทีม</h2>
-    <p class="section-note">Monday อยู่กลาง ดูแลสี่ทีม · ทีม Sunny เป็นทีม peer แสดงแบบสรุป · เลข session: <code>1x</code> ทีม Monday → <code>11-</code> Software · <code>12-</code> Marketing · <code>13-</code> Finance · <code>14-</code> Research</p>
+    <p class="section-note">Monday อยู่กลาง ดูแลห้าทีม · ทีม Sunny เป็นทีม peer แสดงแบบสรุป · เลข session: <code>1x</code> ทีม Monday → <code>11-</code> Software · <code>12-</code> Marketing · <code>13-</code> Finance · <code>14-</code> Research · <code>15-</code> Real Estate</p>
     <div class="legend" aria-hidden="true">
       <span class="k-work">↓ งาน</span><span>สั่งงานลงทีละชั้น</span>
       <span class="k-report">↑ รายงาน</span><span>รายงานย้อนขึ้นทีละชั้น</span>
@@ -367,7 +377,7 @@
         <div class="branch monday">
           <article data-session="10-monday" class="card node p-moon">
             <p class="who"><span class="emo">🌙</span>Monday <span class="tag">🐾 root</span> <span class="eng eng-claude">Claude</span></p>
-            <p class="role">root oracle ตัวแทนเปรม · ส่ง brief ให้ทั้งสี่ทีม · รายงานเปรม</p>
+            <p class="role">root oracle ตัวแทนเปรม · ส่ง brief ให้ทั้งห้าทีม · รายงานเปรม</p>
             <dl>
               <dt>session</dt><dd><code>10-monday</code></dd>
               <dt>engine</dt><dd>Claude · Fable 5.1</dd>
@@ -635,6 +645,21 @@
             <li>📊 Opportunity Report ทุกศุกร์ · 5 โอกาส ให้คะแนน 6 แกน</li>
           </ol>
         </div>
+        <!-- Real Estate -->
+        <div class="panel team-estate">
+          <h3>🏡 ทีม Real Estate</h3>
+          <article data-session="15-atlas" class="card node p-estate">
+            <p class="who"><span class="emo">🏡</span>Atlas <span class="tag">lead</span> <span class="eng eng-claude">Claude</span></p>
+            <p class="role">หัวหน้าทีมอสังหาของเปรม — ดีล/ประมูล/เช่า/เตรียมบริษัท agent · เกิด 2026-10-18</p>
+            <dl>
+              <dt>session</dt><dd><code>15-atlas</code></dd>
+              <dt>engine</dt><dd>Claude · Fable 5.1</dd>
+              <dt>repo</dt><dd class="mono">sukistudio/atlas-oracle</dd>
+            </dl>
+          </article>
+          <p class="sub">ลูกทีมยังไม่เกิด</p>
+        </div>
+        <!-- end Atlas -->
       </div>
     </div>
   </section>
@@ -741,6 +766,8 @@
         <tr><td>🔭 Scout <code>141-scout</code></td><td class="m">Sonnet 5.5</td><td>คัดผลสแกนรายวันตามเกณฑ์ — งานซ้ำ ต้องเร็ว</td></tr>
         <tr><td>🗺️ Chart <code>142-chart</code><span class="planned">รอเกิด</span></td><td class="m">Opus 5.5</td><td>เจาะลึกตลาด/คู่แข่ง/โมเดลหาเงิน ให้เหตุผลหลายชั้น</td></tr>
         <tr><td>🧭 Sextant <code>143-sextant</code></td><td class="m">Sonnet 5.5</td><td>checklist fact-check — ตรวจแหล่งและตัวเลข</td></tr>
+        <tr class="group team-estate"><td colspan="3">🏡 ทีม Real Estate</td></tr>
+        <tr><td>🏡 Atlas <code>15-atlas</code></td><td class="m">Fable 5.1</td><td>lead: ดีล/ประมูล/เช่า · เตรียมบริษัท agent</td></tr>
         <tr class="group"><td colspan="3">ทุกทีม</td></tr>
         <tr><td>🏹 Arrows</td><td><span class="m">Haiku 4.5</span><br><span class="sub">subagent อ่าน/สรุป ภายในทุกตัว</span></td><td>อ่านอย่างเดียว ถูกสุด — รายงานเป็นคำกล่าวอ้าง ต้องตรวจ</td></tr>
         <tr><td>Eddy · Halo · Buoy</td><td>Codex (OMX)</td><td>ลงมือใน worktree · เปิด PR ให้ Claude review/QA</td></tr>
@@ -796,6 +823,7 @@
       <div class="theme p-gold"><h3><span class="emo">🌕</span> Beam · Glow · Prism · Pulse · Halo</h3><p>ลำแสงจันทร์ · แสงเรือง · ปริซึมแยกสี · ชีพจรที่วัดผล</p></div>
       <div class="theme p-harbor"><h3><span class="emo">⚓</span> Harbor · Ledger · Compass · Lantern</h3><p>ท่าเรือที่เก็บของปลอดภัย · สมุดบัญชี · เข็มทิศชี้ทางลงทุน · ตะเกียงส่องความเสี่ยงก่อนชน</p></div>
       <div class="theme p-dawn"><h3><span class="emo">🌅</span> Horizon · Scout · Chart · Sextant · Buoy</h3><p>ขอบฟ้าที่โอกาสโผล่ขึ้น · กล้องส่องไกล · แผนที่เดินเรือ · เครื่องวัดมุมดาวตรวจตำแหน่งให้แม่น</p></div>
+      <div class="theme p-estate"><h3><span class="emo">🏡</span> Atlas</h3><p>แผนที่เชื่อมที่ดินและทำเลให้เห็นโอกาส</p></div>
     </div>
   </section>
 
@@ -803,7 +831,7 @@
 
 <footer>
   <div class="wrap">
-    <p>📅 ข้อมูล ณ 2026-10-17 (ตรวจรายชื่อกับ public feed v3 ก่อน deploy) · เดิมคือ software-team-chart (ทีม Software อย่างเดียว)</p>
+    <p>📅 ข้อมูล ณ 2026-10-18 (ตรวจรายชื่อกับ public feed v3 ก่อน deploy) · เดิมคือ software-team-chart (ทีม Software อย่างเดียว)</p>
     <p>🤖 สร้างโดย Tide/Ripple/Swell/Shore จาก [เปรม] → sukistudio/monday-team-chart</p>
   </div>
 </footer>
