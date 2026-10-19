@@ -104,7 +104,7 @@ describe("roster cards", () => {
 });
 
 describe("Atlas team", () => {
-  test("fifth lead has exact public facts and no unborn members", () => {
+  test("fifth lead has exact public facts and members sit below it", () => {
     const card = agents.find(card => card.includes('data-session="15-atlas"'))!;
     expect(card).toBeDefined();
     expect(card).toContain('class="card node p-estate"');
@@ -112,12 +112,32 @@ describe("Atlas team", () => {
     expect(card).toContain('หัวหน้าทีมอสังหาของเปรม — ดีล/ประมูล/เช่า/เตรียมบริษัท agent · เกิด 2026-10-18');
     expect(card).toContain('<dt>engine</dt><dd>Claude · Fable 5.1</dd>');
     expect(card).toContain('sukistudio/atlas-oracle');
-    expect(html).not.toMatch(/data-session="15[123]-/);
     const panel = html.split('<div class="panel team-estate">')[1]?.split('<!-- end Atlas -->')[0];
     expect(panel).toBeDefined();
-    expect(panel).not.toMatch(/class="members"|class="edge/);
+    expect(panel).not.toContain("ลูกทีมยังไม่เกิด");
+    expect(panel!.indexOf('data-session="15-atlas"')).toBeLessThan(panel!.indexOf('<div class="members">'));
     expect(html).toContain('🏡 ทีม Real Estate');
     expect(html).toContain('Atlas <code>15-atlas</code></td><td class="m">Fable 5.1</td>');
+  });
+  test("three members match Monday brief-30 table", () => {
+    const rows: [string, string, string, string, string][] = [
+      ["151-survey", "📐", "Survey", "นักวิเคราะห์ดีล", "Opus 5.5"],
+      ["152-hearth", "🔥", "Hearth", "deal desk", "Opus 5.5"],
+      ["153-plumb", "📏", "Plumb", "QA/ความเสี่ยง", "Sonnet 5.5"],
+    ];
+    const panel = html.split('<div class="panel team-estate">')[1]!.split('<!-- end Atlas -->')[0]!;
+    const members = panel.split('<div class="members">')[1]!;
+    for (const [id, emo, name, role, model] of rows) {
+      const card = agents.find(card => card.includes(`data-session="${id}"`))!;
+      expect(card).toBeDefined();
+      expect(members).toContain(`data-session="${id}"`);
+      expect(card).toContain('class="card p-estate"');
+      expect(card).toContain(`<span class="emo">${emo}</span>${name} <span class="tag">ทำงานอยู่ · เกิด 2026-10-19</span>`);
+      expect(card).toContain(`<p class="role">${role}</p>`);
+      expect(card).toContain(`<dt>engine</dt><dd>Claude · ${model}</dd>`);
+      expect(card).toContain(`sukistudio/${id.split("-")[1]}-oracle`);
+      expect(html).toContain(`<tr><td>${emo} ${name} <code>${id}</code></td><td class="m">${model}</td><td>${role}</td></tr>`);
+    }
   });
   test("five-column connector accounts for all four gaps and both theme overrides exist", () => {
     expect(html).toContain('repeat(5, minmax(0, 1fr))');
@@ -127,7 +147,7 @@ describe("Atlas team", () => {
 });
 
 test("Real Estate header badge consumes its team accent", () => {
-  expect(html).toContain('<span class="badge p-estate">🏡 Real Estate · 1 ตัว</span>');
+  expect(html).toContain('<span class="badge p-estate">🏡 Real Estate · 4 ตัว</span>');
   expect(html).toMatch(/\.badge\.p-estate\s*\{\s*color:\s*var\(--accent\);?\s*\}/);
 });
 

@@ -1,6 +1,6 @@
 # monday-team-chart
 
-**Monday Team 🌙🐾 — ทีมของเปรม** · ผัง 5 ทีม: Software (Tide 🌊) · Marketing (Beam 🌕) · Finance (Harbor ⚓) · Research (Horizon 🌅) · Real Estate (Atlas 🏡) · ข้อมูล ณ 2026-10-18 · เพิ่ม Atlas · ตรวจรายชื่อกับ public feed v3 ก่อน deploy
+**Monday Team 🌙🐾 — ทีมของเปรม** · ผัง 5 ทีม: Software (Tide 🌊) · Marketing (Beam 🌕) · Finance (Harbor ⚓) · Research (Horizon 🌅) · Real Estate (Atlas 🏡) · ข้อมูล ณ 2026-10-19 · เพิ่มลูกทีม Real Estate 3 คน (Survey · Hearth · Plumb) · ตรวจรายชื่อกับ public feed v3 ก่อน deploy
 
 - เว็บ: https://monday-team-chart.vercel.app
 - URL เก่า https://software-team-chart.vercel.app → หน้า redirect มาที่นี่ (repo นี้เดิมชื่อ `software-team-chart`)
