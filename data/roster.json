@@ -1,0 +1,30 @@
+{
+  "note": "แหล่งความจริงเดียวของ engine/model ต่อตัว · แก้ที่นี่แล้วแก้ index.html ให้ตรง — tests/roster.test.ts ตรวจการ์ดและตาราง model ทุกแถว · model: null = ไม่ระบุรุ่น (ไม่ขึ้นตาราง)",
+  "members": [
+    { "session": "10-monday", "name": "Monday", "team": "root", "engine": "claude", "model": "Fable 5.1" },
+    { "session": "00-sunny", "name": "Sunny", "team": "peer", "engine": "claude", "model": null },
+    { "session": "11-tide", "name": "Tide", "team": "software", "engine": "claude", "model": "Fable 5.1" },
+    { "session": "111-ripple", "name": "Ripple", "team": "software", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "112-swell", "name": "Swell", "team": "software", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "113-shore", "name": "Shore", "team": "software", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "114-eddy-omx", "name": "Eddy", "team": "software", "engine": "codex", "model": "gpt-6.1-sol", "effort": "medium" },
+    { "session": "12-beam", "name": "Beam", "team": "marketing", "engine": "claude", "model": "Fable 5.1" },
+    { "session": "121-glow", "name": "Glow", "team": "marketing", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "122-prism", "name": "Prism", "team": "marketing", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "123-pulse", "name": "Pulse", "team": "marketing", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "124-halo-omx", "name": "Halo", "team": "marketing", "engine": "codex", "model": "gpt-6.1-sol", "effort": "medium" },
+    { "session": "13-harbor", "name": "Harbor", "team": "finance", "engine": "claude", "model": "Fable 5.1" },
+    { "session": "131-ledger", "name": "Ledger", "team": "finance", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "132-compass", "name": "Compass", "team": "finance", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "133-lantern", "name": "Lantern", "team": "finance", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "14-horizon", "name": "Horizon", "team": "research", "engine": "claude", "model": "Fable 5.1" },
+    { "session": "141-scout", "name": "Scout", "team": "research", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "142-chart", "name": "Chart", "team": "research", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "143-sextant", "name": "Sextant", "team": "research", "engine": "claude", "model": "Sonnet 5.5" },
+    { "session": "144-buoy-omx", "name": "Buoy", "team": "research", "engine": "codex", "model": "gpt-6-luna", "effort": "medium" },
+    { "session": "15-atlas", "name": "Atlas", "team": "estate", "engine": "claude", "model": "Fable 5.1" },
+    { "session": "151-survey", "name": "Survey", "team": "estate", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "152-hearth", "name": "Hearth", "team": "estate", "engine": "claude", "model": "Opus 5.5" },
+    { "session": "153-plumb", "name": "Plumb", "team": "estate", "engine": "claude", "model": "Sonnet 5.5" }
+  ]
+}
