@@ -13,6 +13,7 @@ static หน้าเดียว (`index.html` — HTML/CSS ล้วน ไ�
 - feed มี id ที่ chart ไม่มี → ล้ม exit 1; chart มี id ที่ feed ไม่มี → เตือน แต่ exit 0 (เช่น peer/ตัวที่วางแผนไว้/OMX ที่ feed ยังไม่เก็บ)
 - ดึง feed ไม่สำเร็จ, JSON/schema ผิด หรือ id ซ้ำ → ล้ม ไม่ข้ามการตรวจเงียบ ๆ; runtime ไม่ดึง feed และไม่แสดง task จาก feed
 - ทดสอบ offline: `bun run check-members --offline tests/fixtures/member-feed-complete.json` (fixture สำหรับทดสอบ ไม่ใช่ roster สด)
+- **engine/model ต่อตัว: `data/roster.json` = แหล่งความจริงเดียว** (session · ชื่อ · ทีม · engine · model · effort) · หน้าเว็บยังเป็น static ไม่มี build — `tests/roster.test.ts` (ผ่าน `scripts/check-roster.ts`) ตรวจว่าการ์ดทุกใบ (ชื่อ · ทีม · ป้าย engine · บรรทัด engine) และแถวในตาราง model ทุกแถว (มีแถวเดียว · อยู่ใต้กลุ่มทีมถูก · model ตรง) ตรงกับ roster · ไม่ตรง = test FAIL · เปลี่ยน model: แก้ roster แล้วแก้ `index.html` ให้ตรง · `effort` เก็บใน roster เท่านั้น ไม่ขึ้นหน้าเว็บ
 - `data-session` บน agent cards คือ roster; human card ไม่สร้าง session/engine สมมติ · Sunny แสดง Claude แต่ไม่เดารุ่นที่ข้อมูลเดิมไม่ได้ระบุ
 - public gate ใช้ SHA-256 ของ token ชื่อที่ห้ามเผยแพร่ (case-sensitive เช่นเดียวกับ gate ต้นทาง) โดยไม่เก็บรายการชื่อตรงตัวใน repo นี้
 
@@ -40,7 +41,7 @@ vercel --prod --yes
 
 ## Screenshots
 
-`docs/screenshots/omx-{light,dark}-375.png` (ผังปัจจุบัน) · `omx-{light,dark}-375-detail.png` (รายละเอียดป้าย engine)
+`docs/screenshots/omx-{light,dark}-375.png` (ผังปัจจุบัน) · `omx-model-table-{light,dark}-375.png` + `omx-model-card-buoy-{light,dark}-375.png` (model ของ OMX ในตารางและการ์ด · tide-36c) · `omx-{light,dark}-375-detail.png` (รายละเอียดป้าย engine)
 
 ภาพเดิม: `docs/screenshots/shot-{light,dark}-{375,1280}.png`
 

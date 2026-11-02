@@ -2,8 +2,11 @@ import { describe, expect, test } from "bun:test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadRoster } from "../scripts/check-roster";
 
 const html = readFileSync(join(import.meta.dir, "..", "index.html"), "utf8");
+// Models come from data/roster.json; tests/roster.test.ts checks them against every card and table row.
+const modelOf = new Map((await loadRoster()).map((m) => [m.session, m.model]));
 // Same exact-token SHA-256 denylist as the existing public page gate; never publish its plaintext names.
 const PRIVATE_HASHES = new Set([
   "7181ed0d47571d6d8cfa85f93abd8939ee3469f3603f05d32b8aa9a25b8d0edd",
@@ -66,7 +69,7 @@ describe("roster cards", () => {
       expect(card.match(/class="eng eng-/g)?.length).toBe(1);
       if (id!.endsWith("-omx")) {
         expect(card).toContain('class="eng eng-codex">Codex</span>');
-        expect(card).toContain("<dt>engine</dt><dd>Codex (OMX)</dd>");
+        expect(card).toContain("<dt>engine</dt><dd>Codex (OMX) · ");
         expect(card).not.toContain("<dt>repo</dt>");
         expect(card).toContain("<dt>เกิด</dt><dd>2026-10-16</dd>");
       } else {
@@ -110,24 +113,25 @@ describe("Atlas team", () => {
     expect(card).toContain('class="card node p-estate"');
     expect(card).toContain('<span class="emo">🏡</span>Atlas <span class="tag">lead</span>');
     expect(card).toContain('หัวหน้าทีมอสังหาของเปรม — ดีล/ประมูล/เช่า/เตรียมบริษัท agent · เกิด 2026-10-18');
-    expect(card).toContain('<dt>engine</dt><dd>Claude · Fable 5.1</dd>');
+    expect(card).toContain(`<dt>engine</dt><dd>Claude · ${modelOf.get("15-atlas")}</dd>`);
     expect(card).toContain('sukistudio/atlas-oracle');
     const panel = html.split('<div class="panel team-estate">')[1]?.split('<!-- end Atlas -->')[0];
     expect(panel).toBeDefined();
     expect(panel).not.toContain("ลูกทีมยังไม่เกิด");
     expect(panel!.indexOf('data-session="15-atlas"')).toBeLessThan(panel!.indexOf('<div class="members">'));
     expect(html).toContain('🏡 ทีม Real Estate');
-    expect(html).toContain('Atlas <code>15-atlas</code></td><td class="m">Fable 5.1</td>');
+    expect(html).toContain(`Atlas <code>15-atlas</code></td><td class="m">${modelOf.get("15-atlas")}</td>`);
   });
   test("three members match Monday brief-30 table", () => {
-    const rows: [string, string, string, string, string][] = [
-      ["151-survey", "📐", "Survey", "นักวิเคราะห์ดีล", "Opus 5.5"],
-      ["152-hearth", "🔥", "Hearth", "deal desk", "Opus 5.5"],
-      ["153-plumb", "📏", "Plumb", "QA/ความเสี่ยง", "Sonnet 5.5"],
+    const rows: [string, string, string, string][] = [
+      ["151-survey", "📐", "Survey", "นักวิเคราะห์ดีล"],
+      ["152-hearth", "🔥", "Hearth", "deal desk"],
+      ["153-plumb", "📏", "Plumb", "QA/ความเสี่ยง"],
     ];
     const panel = html.split('<div class="panel team-estate">')[1]!.split('<!-- end Atlas -->')[0]!;
     const members = panel.split('<div class="members">')[1]!;
-    for (const [id, emo, name, role, model] of rows) {
+    for (const [id, emo, name, role] of rows) {
+      const model = modelOf.get(id);
       const card = agents.find(card => card.includes(`data-session="${id}"`))!;
       expect(card).toBeDefined();
       expect(members).toContain(`data-session="${id}"`);
