@@ -20,6 +20,28 @@ describe("data/roster.json is the single source of engine/model", () => {
     ]);
   });
 
+  test("tide-63: Sonar is the Grok member with model and effort", () => {
+    const grok = roster.filter((m) => m.engine === "grok").map(({ session, name, team, model, effort }) => [session, name, team, model, effort]);
+    expect(grok).toEqual([["115-sonar-grok", "Sonar", "software", "grok-4.7-build", "high"]]);
+  });
+
+  test("tide-63: grok needs model + effort; wrong badge, card or table engine fails the check", () => {
+    const noEffort = roster.map((m) => (m.session === "115-sonar-grok" ? { ...m, effort: undefined } : m));
+    expect(rosterErrors(html, noEffort).join("\n")).toContain("115-sonar-grok: grok member needs model and effort");
+    const unknown = roster.map((m) => (m.session === "115-sonar-grok" ? { ...m, engine: "gpt" as never } : m));
+    expect(rosterErrors(html, unknown).join("\n")).toContain("115-sonar-grok: unknown engine gpt");
+    for (const [mutate, want] of [
+      [(s: string) => s.replace('class="eng eng-grok">Grok</span>', 'class="eng eng-claude">Claude</span>'), "115-sonar-grok: badge is not Grok"],
+      [(s: string) => s.replace("<dd>Grok Build · grok-4.7-build</dd>", "<dd>Grok Build</dd>"), "115-sonar-grok: card engine"],
+      [(s: string) => s.replace('<td>Grok Build · <span class="m">grok-4.7-build</span>', '<td class="m">grok-4.7-build'), "115-sonar-grok: model table engine is not grok"],
+      [(s: string) => s.replace('<td>Grok Build · <span class="m">grok-4.7-build</span>', "<td>Grok Build</td><td>"), "without a model"],
+    ] as const) {
+      const drifted = mutate(html);
+      expect(drifted).not.toBe(html);
+      expect(rosterErrors(drifted, roster).join("\n")).toContain(want);
+    }
+  });
+
   test("effort lives in the roster only; the page shows no effort, plan or quota", () => {
     expect(html).not.toMatch(/\beffort\b|\bquota\b|\bplan\s*(?:Plus|Pro|Team)\b/i);
   });

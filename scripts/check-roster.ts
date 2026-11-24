@@ -4,11 +4,22 @@ export const ROSTER_PATH = join(import.meta.dir, "..", "data", "roster.json");
 
 export type Team = "root" | "peer" | "software" | "marketing" | "finance" | "research" | "estate";
 
+export type Engine = "claude" | "codex" | "grok";
+/** badge text and the engine label cards/model table show before the model (claude shows "Claude · <model>") */
+export const ENGINES: Record<Engine, { badge: string; label: string }> = {
+  claude: { badge: "Claude", label: "Claude" },
+  codex: { badge: "Codex", label: "Codex (OMX)" },
+  grok: { badge: "Grok", label: "Grok Build" },
+};
+/** non-Claude engines run a named model chosen per member (roster carries model + effort) */
+const PINNED = ["codex", "grok"] as const;
+const isPinned = (e: string) => (PINNED as readonly string[]).includes(e);
+
 export interface Member {
   session: string;
   name: string;
   team: Team;
-  engine: "claude" | "codex";
+  engine: Engine;
   model: string | null;
   effort?: string;
 }
@@ -39,8 +50,8 @@ export function rosterErrors(html: string, roster: Member[]): string[] {
     if (seen.has(m.session)) errors.push(`${m.session}: duplicate roster session`);
     seen.add(m.session);
     if (!TEAMS.has(m.team)) errors.push(`${m.session}: unknown team ${m.team}`);
-    if (m.engine !== "claude" && m.engine !== "codex") errors.push(`${m.session}: unknown engine ${m.engine}`);
-    if (m.engine === "codex" && (!m.model || !m.effort)) errors.push(`${m.session}: codex member needs model and effort`);
+    if (!Object.hasOwn(ENGINES, m.engine)) errors.push(`${m.session}: unknown engine ${m.engine}`);
+    if (isPinned(m.engine) && (!m.model || !m.effort)) errors.push(`${m.session}: ${m.engine} member needs model and effort`);
   }
 
   const cards = new Map<string, { body: string; at: number }>();
@@ -67,8 +78,11 @@ export function rosterErrors(html: string, roster: Member[]): string[] {
   for (const { row } of rows) {
     const id = row.match(/<code>([^<]+)<\/code>/)?.[1];
     if (id && !seen.has(id)) errors.push(`${id}: model table row not in roster`);
-    if (row.includes("Codex (OMX)") && !/Codex \(OMX\) · <span class="m">[^<]+<\/span>/.test(row)) {
-      errors.push(`model table row shows Codex (OMX) without a model: ${row.replace(/<[^>]+>/g, " ").trim()}`);
+    for (const e of PINNED) {
+      const label = ENGINES[e].label;
+      if (row.includes(label) && !row.includes(`${label} · <span class="m">`)) {
+        errors.push(`model table row shows ${label} without a model: ${row.replace(/<[^>]+>/g, " ").trim()}`);
+      }
     }
   }
 
@@ -82,12 +96,13 @@ export function rosterErrors(html: string, roster: Member[]): string[] {
     const team = panelOf(card.at) ?? (m.team === "root" || m.team === "peer" ? m.team : undefined);
     if (team !== m.team) errors.push(`${m.session}: card sits in ${team ?? "no team"}, roster says ${m.team}`);
 
-    const badge = m.engine === "codex" ? "Codex" : "Claude";
+    const badge = ENGINES[m.engine]?.badge ?? m.engine;
     if (!card.body.includes(`class="eng eng-${m.engine}">${badge}</span>`)) errors.push(`${m.session}: badge is not ${badge}`);
 
     const engine = card.body.match(/<dt>engine<\/dt><dd>([^<]*)<\/dd>/)?.[1] ?? "";
-    if (m.engine === "codex") {
-      if (engine !== `Codex (OMX) · ${m.model}`) errors.push(`${m.session}: card engine "${engine}" ≠ Codex (OMX) · ${m.model}`);
+    if (isPinned(m.engine)) {
+      const want = `${ENGINES[m.engine].label} · ${m.model}`;
+      if (engine !== want) errors.push(`${m.session}: card engine "${engine}" ≠ ${want}`);
     } else if (m.model === null) {
       if (engine !== "Claude · ไม่ระบุรุ่น") errors.push(`${m.session}: card engine "${engine}" ≠ Claude · ไม่ระบุรุ่น`);
     } else if (!engine.startsWith("Claude · ") || !showsModel(engine.slice("Claude · ".length), m.model)) {
@@ -107,7 +122,8 @@ export function rosterErrors(html: string, roster: Member[]): string[] {
     if (tableTeam !== (m.team === "peer" ? "root" : m.team)) errors.push(`${m.session}: model table row sits under ${tableTeam}, roster says ${m.team}`);
     const shown = row.match(/class="m">([^<]*)</)?.[1] ?? "";
     if (!showsModel(shown, m.model)) errors.push(`${m.session}: model table shows "${shown}", roster says ${m.model}`);
-    if ((m.engine === "codex") !== row.includes("Codex (OMX) · ")) errors.push(`${m.session}: model table engine is not ${m.engine}`);
+    const shownEngine = PINNED.find((e) => row.includes(`${ENGINES[e].label} · `)) ?? "claude";
+    if (shownEngine !== m.engine) errors.push(`${m.session}: model table engine is not ${m.engine}`);
   }
 
   return errors;

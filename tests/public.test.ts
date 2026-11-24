@@ -72,6 +72,10 @@ describe("roster cards", () => {
         expect(card).toContain("<dt>engine</dt><dd>Codex (OMX) · ");
         expect(card).not.toContain("<dt>repo</dt>");
         expect(card).toContain("<dt>เกิด</dt><dd>2026-10-16</dd>");
+      } else if (id!.endsWith("-grok")) {
+        expect(card).toContain('class="eng eng-grok">Grok</span>');
+        expect(card).toContain("<dt>engine</dt><dd>Grok Build · ");
+        expect(card).not.toContain("<dt>repo</dt>");
       } else {
         expect(card).toContain('class="eng eng-claude">Claude</span>');
         expect(card).toContain("<dt>engine</dt><dd>Claude · ");
@@ -95,6 +99,17 @@ describe("roster cards", () => {
       expect(card).toContain(`<span class="emo">${emoji}</span>${name}`);
       expect(card).toContain(`<p class="role">${role}</p>`);
     }
+  });
+  test("tide-63: Sonar (Grok Build, read-only reviewer under Tide) follows Eddy in Software", () => {
+    const index = agents.findIndex((card) => card.includes('data-session="114-eddy-omx"'));
+    const card = agents[index + 1];
+    expect(card).toContain('data-session="115-sonar-grok"');
+    expect(card).toContain('class="card p-water"');
+    expect(card).toContain('<span class="emo">🔊</span>Sonar');
+    expect(card).toContain("<p class=\"role\">ผู้ตรวจ อ่านอย่างเดียว · ใต้ Tide</p>");
+    expect(card).toContain("<dt>engine</dt><dd>Grok Build · grok-4.7-build</dd>");
+    expect(card).toContain("<dt>เกิด</dt><dd>2026-11-24</dd>");
+    expect(html).toContain(".eng-grok {");
   });
   test("Chart is born; unknown peer model stays explicit; workflow note appears once", () => {
     const chart = agents.find((card) => card.includes('data-session="142-chart"'))!;
